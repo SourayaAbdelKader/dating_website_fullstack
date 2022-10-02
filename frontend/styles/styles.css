@@ -365,3 +365,21 @@ input:checked + .slider:before {
     width: auto;
     height: 40px
 }
+
+textarea {
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    resize: none;
+    outline: none;
+    border-radius: 10px;
+    padding: 1vw;
+    border: 0cm;
+}
+
+.send {
+    padding: 0.5vw 1vw;
+    color: white;
+    font-weight: 600;
+    background-color: #FE5D9F;
+    font-size: 15px;
+}
