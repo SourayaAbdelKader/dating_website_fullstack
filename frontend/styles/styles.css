@@ -6,9 +6,15 @@
     font-style: normal;
 }
 
-img {
+.icon {
     width: 27px;
     height: 27px;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
 }
 
 button {
@@ -27,6 +33,22 @@ h1 {
     margin-bottom: 1vw;
 }
 
+h2 {
+    margin-bottom: 2vw;
+}
+
+h3, h4 {
+    font-size: 20px;
+    margin-bottom: 0.5vw;
+    margin-top: 0.5vw;
+    color: rgba(0, 0, 0, 0.788);
+}
+
+h4 {
+    font-size: 15px;
+
+}
+
 input, select {
     padding: 0.5vw 1vw;
     border-radius: 10px;
@@ -43,6 +65,10 @@ p {
     font-weight: 600;
     color: rgba(0, 0, 0, 0.637);
 
+}
+
+.like {
+    cursor: pointer;
 }
 
 option {
@@ -105,6 +131,10 @@ option {
 
 .light_gray {
     background-color: #F1E4F3;
+}
+
+.cursor {
+    cursor: pointer;
 }
 
 /* Styling the sign up page*/
@@ -175,6 +205,8 @@ option {
     margin-left: -15em;
 }
 
+/* Styling the home page*/
+/* header */
 .website_header {
     padding: 2vw;
     width: 100%;
@@ -182,4 +214,42 @@ option {
 
 .nav {
     padding: 1vw;
+}
+/* body*/
+.home_body {
+    padding: 2vw;
+}
+
+.user {
+    background-color: #D6D2D2;
+    padding: 2vw;
+    width:240px;
+    height: auto;
+    position: relative;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.picture {
+    align-self: center;
+}
+
+.user_image{
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+}
+
+.users_container {
+    display: grid;
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(5, auto);
+    row-gap: 2vw;
+    column-gap: 1.8vw;
 }
