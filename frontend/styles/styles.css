@@ -334,3 +334,21 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
+.pop_up_edit {
+    padding: 2vw;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:#D6D2D2;
+    width: 500px;
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    width: 30em;
+    margin-top: -9em;
+    margin-left: -15em;
+    height:fit-content
+}

@@ -3,7 +3,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Home </title>
+        <title> Profile </title>
         <link rel="stylesheet" href="./styles/styles.css" />
         <link rel="icon" type="image/x-icon" href="./assets/logo.png" />
     </head>
@@ -37,10 +37,10 @@
                     <div> <img class="user_profile_picture" src="./assets/Online-Dating-Site-1920x1280.jpeg"> </div>
                     <div class="user_details"> 
                         <div> <h2> USer name </h2> </div>
+                        <div> <h3> Email </h3> </div>
                         <div> <h3> age </h3> </div>
                         <div> <h3> location </h3> </div>
                         <div> <h3> gender </h3> </div>
-                        <div> <h3> Email </h3> </div>
                         <div class="flex"> 
                             <h3 class="space"> Interested In : </h3>
                             <h3> ... </h3>
@@ -57,5 +57,70 @@
                 </div>
             </div>
         </div>
+
+        <!-- Start of the edit pop up -->
+            <div class="pop_up_edit"> 
+                <div>
+                    <div class="inputs">
+                        <div> <input type="email" placeholder="Name"> </div> 
+                        <div> <input type="email" placeholder="Email"> </div>
+                        <div> <input type="text" placeholder="Bio"> </div>
+                        <div> <p> Date of birth </p> <input type="date" > </div>
+                        <div> <form>
+                            <p> Location </p>  
+                            <select name="location" id="cars">
+                                <option value="volvo">Select...</option>
+                                <option value="volvo">Akkar</option>
+                                <option value="volvo">Aley</option>
+                                <option value="volvo">Baabda</option>
+                                <option value="volvo">Baalbak</option>
+                                <option value="volvo">Batroun</option>
+                                <option value="volvo">Bcharre</option>
+                                <option value="volvo">Beirut</option>
+                                <option value="volvo">Bekaa</option>
+                                <option value="volvo">Chouf</option>
+                                <option value="volvo">Dinnieh</option>
+                                <option value="volvo">Hasbaya</option>
+                                <option value="volvo">Hermel</option>
+                                <option value="volvo">Jbail</option>
+                                <option value="volvo">Jezzine</option>
+                                <option value="volvo">Kasrouan</option>
+                                <option value="volvo">Koura</option>
+                                <option value="volvo">Marjaytoun</option>
+                                <option value="volvo">Metn</option>
+                                <option value="volvo">Minieh</option>
+                                <option value="volvo">Nabatieh</option>
+                                <option value="volvo">Rashaya</option>
+                                <option value="audi">Saida</option>
+                                <option value="opel">Sidon</option>
+                                <option value="saab">Tripoli</option>
+                                <option value="audi">Tyre</option>
+                                <option value="volvo">Zahle</option>
+                                <option value="volvo">Zgharta</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div class="choices">
+                        <div class="user_gender">
+                            <p class="space"> You are </p>
+                            <div class="flex"> 
+                                <div> <button class="space" type="Submit"> <img class="icon" src="./assets/male.png"> </button> </div>
+                                <div> <button class="space" type="Submit"> <img class="icon" src="./assets/female.png"> </button> </div>
+                            </div>
+                        </div>
+                        <div class="user_choice">
+                            <p class="space"> Seeking </p>
+                            <div class="flex"> 
+                                <div> <button class="space" type="Submit"> <img class="icon" src="./assets/male.png"> </button> </div>
+                                <div> <button class="space" type="Submit"> <img class="icon" src="./assets/female.png"> </button> </div>
+                                <div> <button class="space" type="Submit"> <img class="icon" src="./assets/both.png"> </button> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div> <a href="./home.html"> <button class="sign_up" type="submit"> Submit </button> </a> </div>
+                </div>
+            </div>
+            </div>
+        <!-- End of the edit pop up -->
     </body>
 </html>
