@@ -438,3 +438,29 @@ textarea {
     border-radius: 500px;
     margin-right: 2vw;
 }
+
+/* Styling the messages page */
+.message_container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2vw;
+}
+
+.message {
+    position: relative;    
+    width: 50vw;
+    min-height: 5vw;
+    height: auto;
+    background-color: #D6D2D2;
+    margin-bottom: 2vw;
+    padding: 1vw;
+    border-radius: 15px;
+}
+
+.sender_image {
+    border-radius: 100px;
+    height: 40px;
+    width: 40px;
+}
