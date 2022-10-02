@@ -264,6 +264,13 @@ option {
 }
 
 /* Styling the profile page */
+.info_container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .user_profile_picture {
     height: 50vh;
     width: auto;
@@ -272,7 +279,7 @@ option {
 }
 
 .user_details {
-    padding: 1vw 0vw;
+    padding-top: 1vw;
 }
 
 .switch {
@@ -351,4 +358,10 @@ input:checked + .slider:before {
     margin-top: -9em;
     margin-left: -15em;
     height:fit-content
+}
+
+/* user show page */
+.message_icon {
+    width: auto;
+    height: 40px
 }
