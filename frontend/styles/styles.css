@@ -83,6 +83,30 @@ option {
     visibility: visible;
 }
 
+.chosen {
+    color: rgb(254, 66, 143);
+}
+
+.dark_pink {
+    background-color: #FE5D9F;
+}
+
+.semi_pink {
+    background-color: #F686BD;
+}
+
+.light_pink {
+    background-color: #F4BBD3;
+}
+
+.dark_gray {
+    background-color: #D6D2D2;
+}
+
+.light_gray {
+    background-color: #F1E4F3;
+}
+
 /* Styling the sign up page*/
 .body {
     padding: 2vw;
@@ -151,3 +175,11 @@ option {
     margin-left: -15em;
 }
 
+.website_header {
+    padding: 2vw;
+    width: 100%;
+}
+
+.nav {
+    padding: 1vw;
+}
