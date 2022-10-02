@@ -11,7 +11,6 @@
     height: 27px;
 }
 
-
 a {
     color: inherit;
     text-decoration: none;
@@ -205,16 +204,26 @@ option {
     margin-left: -15em;
 }
 
+.space {
+    margin-right: 1vw;
+}
+
+.flex_center {
+    display: flex;
+    align-items: center;
+}
+
 /* Styling the home page*/
 /* header */
 .website_header {
-    padding: 2vw;
+    padding: 1vw 2vw;
     width: 100%;
 }
 
 .nav {
-    padding: 1vw;
+    padding: 0.5vw 0vw;
 }
+
 /* body*/
 .home_body {
     padding: 2vw;
@@ -251,5 +260,77 @@ option {
     align-content: center;
     grid-template-columns: repeat(5, auto);
     row-gap: 2vw;
-    column-gap: 1.8vw;
+    column-gap: 1.7vw;
+}
+
+/* Styling the profile page */
+.user_profile_picture {
+    height: 50vh;
+    width: auto;
+    border-radius: 15px;
+    margin-right: 2vw;
+}
+
+.user_details {
+    padding: 1vw 0vw;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+}
+  
+.switch > input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+  
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 17px;
+    width: 17px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+input:checked + .slider {
+    background-color: #FE5D9F;
+}
+  
+input:focus + .slider {
+    box-shadow: 0 0 1px #FE5D9F;
+}
+  
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+ }
+  
+  /* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+  
+.slider.round:before {
+    border-radius: 50%;
 }
