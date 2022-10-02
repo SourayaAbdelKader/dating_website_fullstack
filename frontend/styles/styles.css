@@ -16,6 +16,13 @@ a {
     text-decoration: none;
 }
 
+.cancel {
+    width: 100%;
+    right : 0cm;
+    cursor: pointer;
+    top: 0cm;
+}
+
 button {
     padding: 0.5vw 1vw;
     border-radius: 10px;
@@ -195,11 +202,12 @@ option {
     align-items: center;
     background-color: #f4bbd3f1;
     width: 500px;
+    height: fit-content;
     position: fixed;
     top: 50%;
     left: 50%;
     width: 30em;
-    height: 18em;
+    height: 20em;
     margin-top: -9em;
     margin-left: -15em;
 }
@@ -366,14 +374,14 @@ input:checked + .slider:before {
     justify-content: center;
     align-items: center;
     background-color:#D6D2D2;
-    width: 500px;
     position: fixed;
-    top: 25%;
+    top: 23%;
     left: 50%;
     width: 30em;
     margin-top: -9em;
     margin-left: -15em;
-    height:fit-content
+    height:fit-content;
+    border: 1px solid gray;
 }
 
 /* user show page */
