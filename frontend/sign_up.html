@@ -8,16 +8,16 @@
         <link rel="icon" type="image/x-icon" href="./assets/logo.png" />
     </head>
     <body>
-        <div class="container">
+        <div class="container flex">
             <div class="login"> 
                 <button type="submit"> LOG IN </button>
             </div>
             <div class="main">
-                <div class="main-header"> 
+                <div class="main-header flex_column flex_baseline"> 
                     <div> <img src="./assets/logo.png"> </div>
-                    <div> DuoLink </div>
+                    <div> <h1> DuoLink </h1> </div>
                 </div>
-                <div class="choices">
+                <div class="choices space_around">
                     <div class="user_gender">
                         <p> You are </p>
                         <div> <button type="Submit"> <img src="./assets/male.png"> </button> </div>
@@ -31,11 +31,12 @@
                     </div>
                 </div>
                 <div class="inputs"> 
-                    <div> <input type="text" placeholder="Email..."> </div>
-                    <div> <input type="text" placeholder="Password..."> </div>
+                    <div> <input type="text" placeholder="Your Email"> </div>
+                    <div> <input type="text" placeholder="Create Your Password"> </div>
                     <div> <form>
-                        <label for="cars"> Location </label>
+                        <p> Location </p>  
                         <select name="location" id="cars">
+                            <option value="volvo">Select...</option>
                             <option value="volvo">Akkar</option>
                             <option value="volvo">Aley</option>
                             <option value="volvo">Baabda</option>
@@ -66,7 +67,7 @@
                         </select>
                       </form>
                 </div>
-                <div> <button type="submit"> Sign Up </button> </div>
+                <div> <button class="sign_up" type="submit"> Sign Up </button> </div>
             </div>
         </div>
         <script src="./scripts/scripts.js"></script>
