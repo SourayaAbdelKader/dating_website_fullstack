@@ -1,0 +1,54 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> User </title>
+        <link rel="stylesheet" href="./styles/styles.css" />
+        <link rel="icon" type="image/x-icon" href="./assets/logo.png" />
+    </head>
+    <body>
+        <!-- start of the header section -->
+        <div class="website_header light_pink">
+            <div class="website_info flex_baseline space_between ">
+                <div class="flex_baseline"> <img class="icon" src="./assets/logo.png"> <h1> DuoLink </h1> </div>
+                <div>
+                    <a href="./sign_up.html"> <button class="sign_up" type="submit"> Log Out </button> </a>
+                </div>
+            </div>
+        </div>
+        <div class="nav light_gray"> 
+            <div class="space_around">
+                <div> <a href="./home.html"> <p> Home </p> </a> </div>
+                <div> <p class="cursor"> Favorites </p> </div>
+                <div> <a href="./messages.html"> <p class="chosen"> Messages </p> </a> </div>
+                <div> <a href="./profile.html"> <p> Profile </p> </a> </div>
+            </div>
+        </div>
+        <!-- Start of the screen body-->
+        <div class="message_container"> 
+            <div class="message"> 
+                <div> <h3> Sender name </h3> </div>
+                <div> <p> bla bla bla </p> </div>
+                <div> <button> Reply </button></div>
+            </div>
+        </div>
+
+        <!-- Start of the message pop up -->
+        <div class="popup hide"> 
+            <div class="cancel space"> <img class="icon" src="./assets/cancel.jpg.png"></div>
+            <div> <img class="message_icon" src="./assets/message.png"> </div>
+            <div> <textarea rows="4" cols="50" placeholder="Your Message"></textarea> </div>
+            <div> <button class="send"> Send </button></div>
+        </div>
+        <!-- End of the message pop up -->
+
+        <!-- start of the message sent pop up -->
+        <div class="popup hide"> 
+            <div> <img class="medium_icon" src="./assets/Sent-message.png"> </div>
+            <div> <h3> Message Sent </h3> </div>
+        </div>
+        <!-- End of the message sent pop up -->
+
+    </body>
+</html>
