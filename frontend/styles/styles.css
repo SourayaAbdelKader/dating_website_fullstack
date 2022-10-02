@@ -383,3 +383,9 @@ textarea {
     background-color: #FE5D9F;
     font-size: 15px;
 }
+
+.medium_icon {
+    position: relative;
+    width: 100px;
+    height: auto;
+}
