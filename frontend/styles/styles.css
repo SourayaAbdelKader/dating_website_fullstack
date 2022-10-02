@@ -267,15 +267,31 @@ option {
 .info_container {
     position: relative;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    background-color:#D6D2D2;
+    padding: 1vw;
+    border-radius: 25px;
+}
+
+section {
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.user_profile_picture {
-    height: 50vh;
-    width: auto;
-    border-radius: 15px;
-    margin-right: 2vw;
+.user_information {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user_information {
+    flex-direction: row;
 }
 
 .user_details {
@@ -361,6 +377,12 @@ input:checked + .slider:before {
 }
 
 /* user show page */
+.user_profile_picture {
+    height: 50vh;
+    border-radius: 25px;
+    width: auto;
+}
+
 .message_icon {
     width: auto;
     height: 40px
@@ -388,4 +410,27 @@ textarea {
     position: relative;
     width: 100px;
     height: auto;
+}
+
+.btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+    border: 0cm;
+}
+
+.btn-warning {
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: scale(3);
+    opacity: 0;
+}
+
+.img-upload > img {
+    height: 100px;
+    width: 100px;
+    border-radius: 500px;
+    margin-right: 2vw;
 }

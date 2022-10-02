@@ -32,35 +32,39 @@
                 <div> </div>
                 <div> <button class="sign_up"> Edit Profile </button></div>
             </div>
-            <div class="info_container">
-                <div class="user_information flex">
-                    <div> <img class="user_profile_picture" src="./assets/Online-Dating-Site-1920x1280.jpeg"> </div>
-                    <div class="user_details"> 
+            <section> 
+                <div class="info_container">
+                    <div class="user_information">
+                        <div class="upload">
+                            <button class="btn-wrapper"> 
+                                <i class="img-upload "> <img src="./assets/Online-Dating-Site-1920x1280.jpeg"> </i>
+                                <input class="btn-warning" accept="image/jpeg,image/png,image/webp" type="file" >
+                            </button>
+                        </div>
                         <div> <h2> USer name </h2> </div>
-                        <div> <h3> Email </h3> </div>
-                        <div> <h3> age </h3> </div>
-                        <div> <h3> location </h3> </div>
-                        <div> <h3> gender </h3> </div>
-                        <div class="flex"> 
-                            <h3 class="space"> Interested In : </h3>
-                            <h3> ... </h3>
+                    </div>                 
+                    <div class="user_details"> 
+                            <div class="flex"> <h3 class="space"> Email: </h3> <h3> </h3> </div>
+                            <div class="flex"> <h3 class="space"> Age: </h3> <h3>  </h3> </div>
+                            <div class="flex"> <h3 class="space"> Location: </h3> <h3>  </h3> </div>
+                            <div class="flex"> <h3 class="space"> Gender: </h3> <h3>  </h3> </div>
+                            <div class="flex"> <h3 class="space"> Interested In: </h3> <h3>  </h3> </div>
+                            <div class="flex_baseline"> <h3 class="space"> Bio: </h3> <p>  </p> </div>
+                            <div class="flex_center"> 
+                                <h3 class="space"> Visibility </h3> 
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
                         </div>
-                        <div class="flex_center"> 
-                            <h3 class="space"> Visibility </h3> 
-                            <label class="switch">
-                                <input type="checkbox" checked>
-                                <span class="slider round"></span>
-                            </label>
-                        </div>
-                        <div> <p> bio </p> </div>
-                    </div>
+                    </div>  
                 </div>
-            </div>
+            </section>
         </div>
 
         <!-- Start of the edit pop up -->
-            <div class="pop_up_edit"> 
-                <div>
+            <div class="pop_up_edit hide"> 
                     <div class="inputs">
                         <div> <input type="email" placeholder="Name"> </div> 
                         <div> <input type="email" placeholder="Email"> </div>
@@ -119,7 +123,6 @@
                     </div>
                     <div> <a href="./home.html"> <button class="sign_up" type="submit"> Submit </button> </a> </div>
                 </div>
-            </div>
             </div>
         <!-- End of the edit pop up -->
     </body>
