@@ -8,68 +8,87 @@
         <link rel="icon" type="image/x-icon" href="./assets/logo.png" />
     </head>
     <body>
-        <div class="container flex">
-            <div class="login"> 
-                <button type="submit"> LOG IN </button>
-            </div>
-            <div class="main">
-                <div class="main-header flex_column flex_baseline"> 
-                    <div> <img src="./assets/logo.png"> </div>
-                    <div> <h1> DuoLink </h1> </div>
+        <div class="body"> 
+            <div class="container flex">
+
+                <div class="login"> 
+                    <button type="submit"> LOG IN </button>
                 </div>
-                <div class="choices space_around">
-                    <div class="user_gender">
-                        <p> You are </p>
-                        <div> <button type="Submit"> <img src="./assets/male.png"> </button> </div>
-                        <div> <button type="Submit"> <img src="./assets/female.png"> </button> </div>
+
+                <div class="main">
+                    <div class="main-header flex_column flex_baseline"> 
+                        <div> <img src="./assets/logo.png"> </div>
+                        <div> <h1> DuoLink </h1> </div>
                     </div>
-                    <div class="user_choice">
-                        <p> Seeking </p>
-                        <div> <button type="Submit"> <img src="./assets/male.png"> </button> </div>
-                        <div> <button type="Submit"> <img src="./assets/female.png"> </button> </div>
-                        <div> <button type="Submit"> <img src="./assets/both.png"> </button> </div>
+                    <div class="choices space_around">
+                        <div class="user_gender">
+                            <p> You are </p>
+                            <div> <button type="Submit"> <img src="./assets/male.png"> </button> </div>
+                            <div> <button type="Submit"> <img src="./assets/female.png"> </button> </div>
+                        </div>
+                        <div class="user_choice">
+                            <p> Seeking </p>
+                            <div> <button type="Submit"> <img src="./assets/male.png"> </button> </div>
+                            <div> <button type="Submit"> <img src="./assets/female.png"> </button> </div>
+                            <div> <button type="Submit"> <img src="./assets/both.png"> </button> </div>
+                        </div>
                     </div>
+                    <div class="inputs"> 
+                        <div> <input type="email" placeholder="Your Email"> </div>
+                        <div> <input type="password" placeholder="Create Your Password"> </div>
+                        <div> <form>
+                            <p> Location </p>  
+                            <select name="location" id="cars">
+                                <option value="volvo">Select...</option>
+                                <option value="volvo">Akkar</option>
+                                <option value="volvo">Aley</option>
+                                <option value="volvo">Baabda</option>
+                                <option value="volvo">Baalbak</option>
+                                <option value="volvo">Batroun</option>
+                                <option value="volvo">Bcharre</option>
+                                <option value="volvo">Beirut</option>
+                                <option value="volvo">Bekaa</option>
+                                <option value="volvo">Chouf</option>
+                                <option value="volvo">Dinnieh</option>
+                                <option value="volvo">Hasbaya</option>
+                                <option value="volvo">Hermel</option>
+                                <option value="volvo">Jbail</option>
+                                <option value="volvo">Jezzine</option>
+                                <option value="volvo">Kasrouan</option>
+                                <option value="volvo">Koura</option>
+                                <option value="volvo">Marjaytoun</option>
+                                <option value="volvo">Metn</option>
+                                <option value="volvo">Minieh</option>
+                                <option value="volvo">Nabatieh</option>
+                                <option value="volvo">Rashaya</option>
+                                <option value="audi">Saida</option>
+                                <option value="opel">Sidon</option>
+                                <option value="saab">Tripoli</option>
+                                <option value="audi">Tyre</option>
+                                <option value="volvo">Zahle</option>
+                                <option value="volvo">Zgharta</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div> <button class="sign_up" type="submit"> Sign Up </button> </div>
                 </div>
-                <div class="inputs"> 
-                    <div> <input type="text" placeholder="Your Email"> </div>
-                    <div> <input type="text" placeholder="Create Your Password"> </div>
-                    <div> <form>
-                        <p> Location </p>  
-                        <select name="location" id="cars">
-                            <option value="volvo">Select...</option>
-                            <option value="volvo">Akkar</option>
-                            <option value="volvo">Aley</option>
-                            <option value="volvo">Baabda</option>
-                            <option value="volvo">Baalbak</option>
-                            <option value="volvo">Batroun</option>
-                            <option value="volvo">Bcharre</option>
-                            <option value="volvo">Beirut</option>
-                            <option value="volvo">Bekaa</option>
-                            <option value="volvo">Chouf</option>
-                            <option value="volvo">Dinnieh</option>
-                            <option value="volvo">Hasbaya</option>
-                            <option value="volvo">Hermel</option>
-                            <option value="volvo">Jbail</option>
-                            <option value="volvo">Jezzine</option>
-                            <option value="volvo">Kasrouan</option>
-                            <option value="volvo">Koura</option>
-                            <option value="volvo">Marjaytoun</option>
-                            <option value="volvo">Metn</option>
-                            <option value="volvo">Minieh</option>
-                            <option value="volvo">Nabatieh</option>
-                            <option value="volvo">Rashaya</option>
-                            <option value="audi">Saida</option>
-                            <option value="opel">Sidon</option>
-                            <option value="saab">Tripoli</option>
-                            <option value="audi">Tyre</option>
-                            <option value="volvo">Zahle</option>
-                            <option value="volvo">Zgharta</option>
-                        </select>
-                      </form>
-                </div>
-                <div> <button class="sign_up" type="submit"> Sign Up </button> </div>
             </div>
         </div>
+
+        <!-- start of login pop up -->
+        <div class="popup">
+            <div class="main-header flex_column flex_baseline"> 
+                <div> <img src="./assets/logo.png"> </div>
+                <div> <h1> DuoLink </h1> </div>
+            </div>
+            <div class="inputs">
+                <div> <input type="email" placeholder="Your Email"> </div>
+                <div> <input type="password" placeholder="Your Password"> </div>
+            </div>
+            <div> <button class="sign_up" type="submit"> Log In </button> </div>
+        </div>
+
+        <!-- end of login pop up -->
         <script src="./scripts/scripts.js"></script>
     </body>
 </html>

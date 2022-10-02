@@ -6,16 +6,6 @@
     font-style: normal;
 }
 
-body {
-    padding: 2vw;
-    background-image: url("/frontend/assets/69750453.jpg");
-    height: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: top;
-    position: relative;
-}
-
 img {
     width: 27px;
     height: 27px;
@@ -85,6 +75,25 @@ option {
     justify-content: space-around;
 }
 
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+/* Styling the sign up page*/
+.body {
+    padding: 2vw;
+    background-image: url("/frontend/assets/69750453.jpg");
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    position: relative;
+}
+
 .container {
     justify-content: space-between;
     position: relative;;
@@ -92,7 +101,7 @@ option {
 
 .main {
     position: relative;
-    background-color: rgba(255, 255, 255, 0.774);
+    background-color: #f1e4f3d0;
     padding: 2vw;
     height: 550px;
     width: 400px;
@@ -122,5 +131,23 @@ option {
     font-size: 17px;
     color: white;
     font-weight: 600;
+}
+
+.popup {
+    padding: 2vw;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4bbd3f1;
+    width: 500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 30em;
+    height: 18em;
+    margin-top: -9em;
+    margin-left: -15em;
 }
 
