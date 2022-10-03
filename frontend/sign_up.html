@@ -12,7 +12,7 @@
             <div class="container flex">
 
                 <div class="login"> 
-                    <button type="submit"> LOG IN </button>
+                    <button id="login_btn" type="submit"> LOG IN </button>
                 </div>
 
                 <div class="main">
@@ -23,22 +23,22 @@
                     <div class="choices space_around">
                         <div class="user_gender">
                             <p> You are </p>
-                            <div> <button type="Submit"> <img class="icon" src="./assets/male.png"> </button> </div>
-                            <div> <button type="Submit"> <img class="icon" src="./assets/female.png"> </button> </div>
+                            <div> <button  id="signup_gender_male" type="Submit"> <img class="icon" src="./assets/male.png"> </button> </div>
+                            <div> <button id="signup_gender_female" type="Submit"> <img class="icon" src="./assets/female.png"> </button> </div>
                         </div>
                         <div class="user_choice">
                             <p> Seeking </p>
-                            <div> <button type="Submit"> <img class="icon" src="./assets/male.png"> </button> </div>
-                            <div> <button type="Submit"> <img class="icon" src="./assets/female.png"> </button> </div>
-                            <div> <button type="Submit"> <img class="icon" src="./assets/both.png"> </button> </div>
+                            <div> <button id="signup_interested_in_male" type="Submit"> <img class="icon" src="./assets/male.png"> </button> </div>
+                            <div> <button id="signup_interested_in_female" type="Submit"> <img class="icon" src="./assets/female.png"> </button> </div>
+                            <div> <button id="signup_interested_in_both" type="Submit"> <img class="icon" src="./assets/both.png"> </button> </div>
                         </div>
                     </div>
                     <div class="inputs"> 
-                        <div> <input type="email" placeholder="Your Email"> </div>
-                        <div> <input type="password" placeholder="Create Your Password"> </div>
+                        <div> <input id="signup_email" type="email" placeholder="Your Email"> </div>
+                        <div> <input id="signup_password" type="password" placeholder="Create Your Password"> </div>
                         <div> <form>
                             <p> Location </p>  
-                            <select name="location" id="cars">
+                            <select name="location" id="singnup_location">
                                 <option value="volvo">Select...</option>
                                 <option value="volvo">Akkar</option>
                                 <option value="volvo">Aley</option>
@@ -70,23 +70,23 @@
                             </select>
                         </form>
                     </div>
-                    <div> <a href="./home.html"> <button class="sign_up" type="submit"> Sign Up </button> </a> </div>
+                    <div> <a href="./home.html"> <button id="signup_btn" class="sign_up" type="submit"> Sign Up </button> </a> </div>
                 </div>
             </div>
         </div>
 
         <!-- start of login pop up -->
-        <div class="popup hide">
-            <div class="cancel space"> <img class="icon" src="./assets/cancel.jpg.png"></div>
+        <div id="login_modal" class="popup hide">
+            <div class="cancel space"> <img id="cancel_btn" class="icon" src="./assets/cancel.jpg.png"></div>
             <div class="main-header flex_column flex_baseline"> 
                 <div> <img class="icon" src="./assets/logo.png"> </div>
                 <div> <h1> DuoLink </h1> </div>
             </div>
             <div class="inputs">
-                <div> <input type="email" placeholder="Your Email"> </div>
-                <div> <input type="password" placeholder="Your Password"> </div>
+                <div> <input id="login_email" type="email" placeholder="Your Email"> </div>
+                <div> <input id="login_password" type="password" placeholder="Your Password"> </div>
             </div>
-            <div> <a href="./home.html"> <button class="sign_up" type="submit"> Log In </button> </a> </div>
+            <div> <a href="./home.html"> <button id="submit_login_btn" class="sign_up" type="submit"> Log In </button> </a> </div>
         </div>
 
         <!-- end of login pop up -->

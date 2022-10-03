@@ -115,6 +115,10 @@ option {
     visibility: visible;
 }
 
+.error {
+    border: 1px solid red !important;
+}
+
 .chosen {
     color: rgb(254, 66, 143);
 }
