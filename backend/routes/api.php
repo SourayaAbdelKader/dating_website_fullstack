@@ -18,6 +18,8 @@ Route::get("/users/{id?}", [User::class, 'getUsers']);
 Route::get("/favorites/{id?}", [User::class, 'getFavorites']);
 
 Route::get("/addFavorite/{id?} {favorite_id?}", [User::class, 'addFavorite']);
+Route::get("/block/{id?} {blocked_id?}", [User::class, 'block']);
+
 
 
 

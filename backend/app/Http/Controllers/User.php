@@ -54,4 +54,20 @@ class User extends Controller
             "status" => "Success", 
         ]);
     }
+
+    public function block(Request $request, $id, $blocked_id){
+
+        $data = array(
+            "user_id" => $id,
+            "blocked_id" => $blocked_id,
+        );
+
+        DB::table('blocks')->insert($data);
+        DB::delete("delete from favorites where ( user_id = {$id} and favorite_id = {$blocked_id} ) or ( user_id = {$blocked_id} and favorite_id = {$id} )");
+        DB::delete("delete from messages where ( user_id = {$id} and receiver_id = {$blocked_id} ) or ( user_id = {$blocked_id} and receiver_id = {$id} )");
+
+        return response()->json([
+            "status" => "Success", 
+        ]);
+    }
 }
