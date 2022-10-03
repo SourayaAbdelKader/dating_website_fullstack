@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\User;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,19 +13,13 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::group([
+Route::get("/users/{id?}", [User::class, 'getUsers']);
 
-    'middleware' => 'api',
-    'prefix' => 'auth'
+Route::get("/favorites/{id?}", [User::class, 'getFavorites']);
 
-], function ($router) {
+Route::get("/addFavorite/{id?} {favorite_id?}", [User::class, 'addFavorite']);
 
-    Route::post('login', 'AuthController@login');
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
 
-});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
