@@ -1,3 +1,4 @@
+// saved the selected user in the local storage
 const user_id = localStorage.getItem("selected_user");
 const website_pages = "http://127.0.0.1:8000/api/";
 
@@ -11,7 +12,7 @@ const getUserAPI = async () => {
                 details = element.location.split(",")
                 const v = details[0];
                 const l = details[1];
-                
+                // this function is used to take the user longtiture and lattitude and get the city he lives in, tried to implement it in a separate function and it won't take parameters
                 navigator.geolocation.getCurrentPosition(function(location) {
                     var api_key = '294a9c72c0fd403a9592db51a8764026';
                     var latitude = v;
@@ -33,6 +34,8 @@ const getUserAPI = async () => {
                         details = location.split(",");
                         city_place = details[1].split(" ");
                         city = city_place[1];
+
+                        // to construct the user component 
                         const container = document.getElementById("show_container");
                         let div = document.createElement("div");
                         div.innerHTML = `<div class="user_information">
@@ -76,6 +79,7 @@ const getUserAPI = async () => {
     }catch(error){console.log("Error from GET API", error);}
 }
 
+// the following functions are used to calculate the age of a user, favorite, block or message a user
 const calculateAge = (element) => {
     let date =  new Date().getFullYear();
     return date - element.birth_date.slice(0,4);

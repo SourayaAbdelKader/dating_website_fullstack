@@ -35,20 +35,22 @@ const getAPI = async () => {
                                 city = city_place[1];
                                 const container = document.getElementById("user_container");
                                 let div = document.createElement("div");
-                                div.innerHTML = `<div id="${element.id}" class="user">
-                                <div class="picture"> <img class="user_image" src="${element.pic_url}"> </div>
-                                <div class="space_between"> 
-                                    <div> <a href="./show_user.html"> <h3> ${element.name} </h3> </a> </div>  
-                                    <div> <h4> ${age} y.o </h4> </div>
-                                </div>
-                                <div class="space_between">
-                                <div> <p> ${city} </p> </div>
-                                <div> <img class="icon cursor" src="./assets/Picture1.png"> </div>
-                                </div>
+                                div.innerHTML = 
+                                `<div id="${element.id}" class="user">
+                                    <div class="picture"> <img class="user_image" src="${element.pic_url}"> </div>
+                                    <div class="space_between"> 
+                                        <div> <a href="./show_user.html"> <h3> ${element.name} </h3> </a> </div>  
+                                        <div> <h4> ${age} y.o </h4> </div>
+                                    </div>
+                                    <div class="space_between">
+                                    <div> <p> ${city} </p> </div>
+                                    <div class="like"> <img id="image${element.id}" class="icon cursor" src="./assets/Picture1.png"> </div>
+                                    </div>
                                 </div>`;
                                 container.appendChild(div); 
 
                                 selected_user();
+                                addFavorite(); // works when you click twice on a user
 
                             } else if (request.status <= 500){                        
                                 console.log("unable to geocode! Response code: " + request.status);
@@ -61,16 +63,36 @@ const getAPI = async () => {
                         
                             if (navigator.geolocation) {
                                 window.navigator.geolocation
-                                .getCurrentPosition(console.log, console.error);}})});   
+                                .getCurrentPosition(console.log, console.error);}})});  
             }catch(error){console.log("Error from GET API", error);}
         }
 
-console.log(getAPI());
+
+
 
 const calculateAge = (element) => {
     let date =  new Date().getFullYear();
     return date - element.birth_date.slice(0,4);
 }
+
+// to favorite this user 
+const addFavorite = () => {
+    const like = document.querySelectorAll(".like");
+    const selected_user = document.querySelectorAll(".user");
+    selected_user.forEach((user) => {
+    user.addEventListener("click", () => {
+    localStorage.setItem("selected_user", user.id);
+    like.forEach(button => {
+        button.addEventListener("click", async() => { 
+            const user_id = localStorage.getItem("selected_user");
+            const like_image = document.getElementById("image"+user_id);
+            like_image.src = "./assets/liked.png";
+            await axios(website_pages+"addFavorite/"+1+" "+user_id)
+                .then((data) => {
+                    console.log(data)})
+    })
+})
+})})};
 
 
     //This function takes in latitude and longitude of two location and returns the distance between them as the crow flies (in km)
@@ -94,14 +116,13 @@ function toRad(Value){
 }
 
 const selected_user = () => {
-const selected_user = document.querySelectorAll(".user");
-    console.log(selected_user.length);
-    selected_user.forEach((user) => {
-    user.addEventListener("click", () => {
-    localStorage.setItem("selected_user", user.id);
-    console.log(localStorage.getItem("selected_user"));
+    const selected_user = document.querySelectorAll(".user");
+        selected_user.forEach((user) => {
+        user.addEventListener("click", () => {
+        localStorage.setItem("selected_user", user.id);
 });
 })};
 
+console.log(getAPI());
 
 
