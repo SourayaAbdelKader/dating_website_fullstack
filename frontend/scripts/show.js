@@ -58,7 +58,7 @@ const getUserAPI = async () => {
                     </div>`;
                         container.appendChild(div); 
                         addFavorite();
-                        block();
+                        block_user();
                         sendMessage();
 
                     } else if (request.status <= 500){                        
@@ -82,33 +82,62 @@ const calculateAge = (element) => {
 }
 getUserAPI();
 
+// to favorite this user 
 const addFavorite = () => {
     const like = document.getElementById("like");
+    const like_image = document.getElementById("like_image");
     like.addEventListener("click", async() => {
-        const like_image = document.getElementById("like_image");
         like_image.src = "./assets/liked.png";
         await axios(website_pages+"addFavorite/"+1+" "+user_id)
             .then((data) => {
                 console.log(data)})
 })};
 
-const block = () => {
+const block_user = () => {
     const block = document.getElementById("block");
+    const block_image = document.getElementById("block_image");
+    const block_message = document.getElementById("block_pop_up");
     block.addEventListener("click", async() => {
-        const like_image = document.getElementById("block_image");
-        like_image.src = "./assets/blocked.png";
+        block_image.src = "./assets/blocked.png";
         await axios(website_pages+"block/"+1+" "+user_id)
             .then((data) => {
                 console.log(data)})
+        block_message.classList.remove("hide");
 })};
 
 const sendMessage = () => {
     const message = document.getElementById("message");
-    message.addEventListener("click", async() => {
-        const send = document.getElementById("message_pop_up");
+    const send = document.getElementById("message_pop_up");
+    const cancel = document.getElementById("cancel_message");
+    const message_content = document.getElementById("message_content");
+    const send_message_btn = document.getElementById("send_message_btn");
+    const sent_message = document.getElementById("sent_message");
+    message.addEventListener("click", () => {
         send.classList.remove("hide");
-        
-        console.log("hi");
-        
+        cancel.addEventListener("click", ()=> {
+            send.classList.add("hide");
+        })
+        send_message_btn.addEventListener("click", async()=>{
+            if(!message_content.value){
+                message_content.classList.add("error");
+            }
+            if(message_content.value){
+                console.log(message_content.value);
+                let api_data = new FormData();
+                api_data.append("user_id", 1);
+                api_data.append("receiver_id", user_id);
+                api_data.append("message", message_content.value);
+                message_content.classList.remove("error");
+                await axios.post(
+                    website_pages+"sendMessage",
+                    api_data,)
+                .then((data)=> {console.log(data)});
+                send.classList.add("hide");
+                sent_message.classList.remove("hide");
+                setTimeout(function() {
+                    sent_message.classList.add("hide");;
+                }, 1000);
+            }
+        })        
 })};
 
