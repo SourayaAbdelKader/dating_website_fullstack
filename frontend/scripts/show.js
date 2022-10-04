@@ -51,13 +51,15 @@ const getUserAPI = async () => {
                                 <div class="icons flex_center">
                                     <div> <button id="like" type="submit"> <img id="like_image" class="message_icon" src="./assets/Picture1.png"> </button> </div>
                                     <div> <button id="message" type="submit"> <img class="message_icon" src="./assets/message.png"> </button> </div>
-                                    <div> <button id="block" type="submit"> <img class="message_icon" src="./assets/block.png"> </button>  </div>
+                                    <div> <button id="block" type="submit"> <img id="block_image" class="message_icon" src="./assets/block.png"> </button>  </div>
                                 </div>
                             </div>
                         </div>
                     </div>`;
                         container.appendChild(div); 
                         addFavorite();
+                        block();
+                        sendMessage();
 
                     } else if (request.status <= 500){                        
                         console.log("unable to geocode! Response code: " + request.status);
@@ -81,12 +83,32 @@ const calculateAge = (element) => {
 getUserAPI();
 
 const addFavorite = () => {
-const like = document.getElementById("like");
-like.addEventListener("click", async() => {
-    console.log("hi");
-    const like_image = document.getElementById("like_image");
-    like_image.src = "./assets/liked.png";
-    await axios(website_pages+"addFavorite/"+1+" "+user_id)
-        .then((data) => {
-            console.log(data)})
-})}
+    const like = document.getElementById("like");
+    like.addEventListener("click", async() => {
+        const like_image = document.getElementById("like_image");
+        like_image.src = "./assets/liked.png";
+        await axios(website_pages+"addFavorite/"+1+" "+user_id)
+            .then((data) => {
+                console.log(data)})
+})};
+
+const block = () => {
+    const block = document.getElementById("block");
+    block.addEventListener("click", async() => {
+        const like_image = document.getElementById("block_image");
+        like_image.src = "./assets/blocked.png";
+        await axios(website_pages+"block/"+1+" "+user_id)
+            .then((data) => {
+                console.log(data)})
+})};
+
+const sendMessage = () => {
+    const message = document.getElementById("message");
+    message.addEventListener("click", async() => {
+        const send = document.getElementById("message_pop_up");
+        send.classList.remove("hide");
+        
+        console.log("hi");
+        
+})};
+
