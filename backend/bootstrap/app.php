@@ -1,14 +1,14 @@
 <?php
 
-$app->configure('jwt');
+//s$app->configure('jwt');
 
-$app->register(App\Providers\AuthServiceProvider::class);
+//$app->register(App\Providers\AuthServiceProvider::class);
 
-$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+//$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 
-$app->routeMiddleware([
-    'auth' => App\Http\Middleware\Authenticate::class,
-]);
+//$app->routeMiddleware([
+  //  'auth' => App\Http\Middleware\Authenticate::class,
+//]);
 
 $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)

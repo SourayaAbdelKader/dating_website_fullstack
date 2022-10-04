@@ -18,7 +18,7 @@ class UserController extends Controller{
         if($id == "add"){
             $user = new User; 
         }else{
-            $id= Auth::$id();
+            //$id= Auth::$id();
             $user = User::find($id);
         }
         $user->name = $request->name ? $request->name : $user->name;
@@ -68,7 +68,7 @@ class UserController extends Controller{
     }
 
     public function getUSerInfo(Request $request, $id){
-        $id= Auth::$id();
+        //$id= Auth::$id();
         $user = DB::select("select * from users where user_id= {$id}");
         return response()->json([
             "status" => "Success",
@@ -78,8 +78,8 @@ class UserController extends Controller{
 
     // this function chooses the users which are not blocked to get displayed
     public function getUsers(Request $request, $id){
-        $id= Auth::$id();
-        $users = DB::select("select name, location, birth_date, gender, interested_in, bio, pic_url from users 
+        //$id= Auth::$id();
+        $users = DB::select("select id, name, location, birth_date, gender, interested_in, bio, pic_url from users 
         where visible=1 and id != {$id} and id not in ( SELECT blocked_id from blocks Where user_id= {$id} )");
 
         return response()->json([
@@ -90,7 +90,7 @@ class UserController extends Controller{
 
     // this function chooses the favorites
     public function getFavorites(Request $request, $id){
-        $id= Auth::$id();
+        //$id= Auth::$id();
         $favorites = DB::select("select * from favorites f join users u on u.id=f.favorite_id where user_id= {$id}");
         return response()->json([
             "status" => "Success",
@@ -99,7 +99,7 @@ class UserController extends Controller{
     }
 
     public function getMessages(Request $request, $id){
-        $id= Auth::$id();
+        //$id= Auth::$id();
         $messages = DB::select("select * from messages m join users u on u.id=m.user_id where receiver_id= {$id}");
         return response()->json([
             "status" => "Success",
@@ -108,7 +108,7 @@ class UserController extends Controller{
     }
 
     public function addFavorite(Request $request, $id, $favorite_id){
-        $id= Auth::$id();
+        //$id= Auth::$id();
         $data = array(
             "user_id" => Auth::$id,
             "favorite_id" => $favorite_id,
@@ -122,7 +122,7 @@ class UserController extends Controller{
     }
 
     public function block(Request $request, $id, $blocked_id){
-        $id= Auth::$id();
+        //$id= Auth::$id();
         $data = array(
             "user_id" => $id,
             "blocked_id" => $blocked_id,
@@ -138,17 +138,17 @@ class UserController extends Controller{
     }
 
     public function notVisible(Request $request, $id){
-        $id= Auth::$id();
+        //$id= Auth::$id();
         $user = User::find($id);
         $user->visible = "0";
         $user->save();
         return redirect()->back()->with('status','Updated Successfully');
     }
 
-    public function __construct()
-    {
-        $this->middleware('auth:api');
-    }
+    //public function __construct()
+    //{
+     //   $this->middleware('auth:api');
+    //}
 
     function notFound(){
         return response()->json([

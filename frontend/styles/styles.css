@@ -150,7 +150,7 @@ option {
 /* Styling the sign up page*/
 .body {
     padding: 2vw;
-    background-image: url("/frontend/assets/69750453.jpg");
+    background-image: url("assets/69750453.jpg");
     height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -297,7 +297,6 @@ section {
 .user_information {
     position: relative;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
