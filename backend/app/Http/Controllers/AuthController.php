@@ -32,7 +32,17 @@ class AuthController extends Controller {
         $user->bio = $request->bio? $request->bio : $user->bio;
         $user->location = $request->location? $request->location : $user->location;
         $user->visible = $request->visible? $request->visible : $user->visible;
-        $user->pic_url = $request->pic_url? $request->pic_url : $user->pic_url;
+        // for the users picture
+        $picture = $request->pic_url;
+        $folderPath = "profile-photos/";
+        $image_parts = explode(";base64", $picture);
+        $image_type_aux = explode("image/",$image_parts[0]);
+        $image_type = $image_type_aux[1];
+        $image_base64 = base64_decode($image_parts[1]);
+        $file = $folderPath.$username.".png"; 
+        file_put_contents($file,$image_base64);
+        $user->pic_url = urlencode($file);
+        
         $user->remember_token = $token;
 
         $email = $request->email;
