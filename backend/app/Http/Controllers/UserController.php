@@ -3,19 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use DB;
 
 use App\Models\User;
 use App\Models\Block;
 use App\Models\Favorite;
 use App\Models\Message;
 
-class UserController extends Controller
-{
-    public function createOrUpdateUser(Request $request, $id = "add")
-    {
+class UserController extends Controller{
+
+    public function createOrUpdateUser(Request $request, $id = "add"){
         if($id == "add"){
             $user = new User; 
         }else{
@@ -33,10 +32,13 @@ class UserController extends Controller
         $user->visible = $request->visible? $request->visible : $user->visible;
         $user->pic_url = $request->pic_url? $request->pic_url : $user->pic_url;
 
+        $email = $request->email;
+        $new_user = DB::select("select * from users where email= {$email} ");
+
         if($user->save()){
             return response()->json([
                 "status" => "Success",
-                "data" => $user
+                "data" => $new_user
             ]);
         }
 
@@ -46,8 +48,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function sendMessage(Request $request)
-    {
+    public function sendMessage(Request $request){
         $message = new Message;
         $message->user_id = $request->user_id ? $request->user_id : $user->user_id;
         $message->receiver_id = $request->receiver_id ? $request->receiver_id : $user->receiver_id;
@@ -139,5 +140,12 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
+    }
+
+    function notFound(){
+        return response()->json([
+            "status" => "Error",
+            "data" => "Not Found"
+        ]);
     }
 }

@@ -13,17 +13,22 @@ use App\Http\Controllers\UserController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get("/users/{id?}", [UserController::class, 'getUsers']);
+Route::group(["prefix"=> "v0"], function(){
+   
+    Route::group(["middleware" => "auth:api"], function(){
+        Route::get("/users/{id?}", [UserController::class, 'getUsers'])->name("get-user");
+        Route::get("/favorites/{id?}", [UserController::class, 'getFavorites'])->name("get-favorite");
+        Route::get("/addFavorite/{id?} {favorite_id?}", [UserController::class, 'addFavorite'])->name("add-favorite");
+        Route::get("/block/{id?} {blocked_id?}", [UserController::class, 'block'])->name("block-user");
+        Route::get("/messages/{id?}", [UserController::class, 'getMessages'])->name("get-message");
+        Route::post("/sendMessage", [UserController::class, 'sendMessage'])->name("send-message");
+        Route::post("/notVisible", [UserController::class, 'notVisible'])->name("not-visible");
+        Route::post("/create", [UserController::class, 'createOrUpdateUser'])->name("update-user");
 
-Route::get("/favorites/{id?}", [UserController::class, 'getFavorites']);
+    }); 
 
-Route::get("/addFavorite/{id?} {favorite_id?}", [UserController::class, 'addFavorite']);
-Route::get("/block/{id?} {blocked_id?}", [UserController::class, 'block']);
-Route::get("/messages/{id?}", [UserController::class, 'getMessages']);
-Route::post("/notVisible", [UserController::class, 'notVisible']);
-Route::post("/create", [UserController::class, 'createOrUpdateUser']);
-Route::post("/sendMessage", [UserController::class, 'sendMessage']);
+    Route::get("/login", [AuthController::class, "login"])->name("login");
+    Route::get("/register", [AuthController::class, "register"])->name("register");
+    Route::get("/not_found", [UserController::class, "notFound"])->name("not-found");
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
 });
