@@ -15,6 +15,7 @@ use App\Http\Controllers\UserController;
         Route::post("/sendMessage", [UserController::class, 'sendMessage'])->name("send-message");
         Route::post("/notVisible", [UserController::class, 'notVisible'])->name("not-visible");
         Route::post("/create", [UserController::class, 'createOrUpdateUser'])->name("update-user");
+        Route::get("/getUserInfo/{id?}", [UserController::class, 'getUserInfo'])->name("get-user-info");
     //}); 
 
     //Route::get("/login", [AuthController::class, "login"])->name("login");

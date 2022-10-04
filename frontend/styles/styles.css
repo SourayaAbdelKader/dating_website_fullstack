@@ -385,7 +385,7 @@ input:checked + .slider:before {
 
 /* user show page */
 .user_profile_picture {
-    height: 50vh;
+    height: 70vh !important;
     border-radius: 25px;
     width: auto;
 }

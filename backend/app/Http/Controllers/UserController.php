@@ -67,9 +67,9 @@ class UserController extends Controller{
         return 'Success';
     }
 
-    public function getUSerInfo(Request $request, $id){
+    public function getUserInfo(Request $request, $id){
         //$id= Auth::$id();
-        $user = DB::select("select * from users where user_id= {$id}");
+        $user = DB::select("select * from users where id= {$id}");
         return response()->json([
             "status" => "Success",
             "data" => $user
@@ -110,7 +110,7 @@ class UserController extends Controller{
     public function addFavorite(Request $request, $id, $favorite_id){
         //$id= Auth::$id();
         $data = array(
-            "user_id" => Auth::$id,
+            "user_id" => $id,
             "favorite_id" => $favorite_id,
         );
 

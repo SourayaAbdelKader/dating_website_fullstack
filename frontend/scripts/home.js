@@ -99,6 +99,7 @@ const selected_user = document.querySelectorAll(".user");
     selected_user.forEach((user) => {
     user.addEventListener("click", () => {
     localStorage.setItem("selected_user", user.id);
+    console.log(localStorage.getItem("selected_user"));
 });
 })};
 
