@@ -79,7 +79,7 @@ signup_interested_in_f.addEventListener("click", ()=>{
     api_data.append("interested_in", "female");
 })
 
-signup_interested_in_m.addEventListener("click", ()=>{
+signup_interested_in_b.addEventListener("click", ()=>{
     signup_interested_in_b.classList.add("dark_gray");
     signup_interested_in_f.classList.remove("dark_gray");
     signup_interested_in_m.classList.remove("dark_gray");
