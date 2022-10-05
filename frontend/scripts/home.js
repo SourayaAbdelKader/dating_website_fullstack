@@ -6,8 +6,8 @@ const getAPI = async () => {
                 .then((data) => {
                     console.log(data.data.data);
                     data.data.data.forEach(element => {
+
                         if (element.gender == localStorage.getItem("interested_in")){
-                            console.log(element)
                         let age = calculateAge(element);
                         details = element.location.split(",")
                         const v = details[0];
@@ -57,9 +57,7 @@ const getAPI = async () => {
                             request.send();  // make the request
                             })
                         
-                            if (navigator.geolocation) {
-                                window.navigator.geolocation
-                                .getCurrentPosition(console.log, console.error);}}})});
+                            if (navigator.geolocation) {window.navigator.geolocation.getCurrentPosition(console.log, console.error);}}})});
             }catch(error){console.log("Error from GET API", error);}
 }
 

@@ -5,7 +5,15 @@ const getFavoriteAPI = async () => {
             try{
                 await axios(website_pages+"favorites/"+localStorage.getItem("id"))
                 .then((data) => {
-                    console.log(data.data.data);
+                    if (data.data.data.length == 0) {
+                        const container = document.getElementById("favorite_container");
+                        let div = document.createElement("div");
+                        div.innerHTML = 
+                        `<div  id="sent_message" class="popup"> 
+                            <div> <h3> No Favorites yet </h3> </div>
+                        </div>`;
+                        container.appendChild(div); 
+                    }
                     data.data.data.forEach(element => {
                         let age = calculateAge(element);
                         details = element.location.split(",")

@@ -3,7 +3,7 @@ const website_pages = "http://127.0.0.1:8000/api/v/";
 
 const getUserAPI = async () => {
     try{
-        await axios(website_pages+"getUserInfo/"+1)
+        await axios(website_pages+"getUserInfo/"+localStorage.getItem("id"))
         .then((data) => {
             console.log(data.data.data);
             element = data.data.data[0];
@@ -74,9 +74,7 @@ const getUserAPI = async () => {
                     request.send();  // make the request
                     })
                 
-                    if (navigator.geolocation) {
-                        window.navigator.geolocation
-                        .getCurrentPosition(console.log, console.error);}})   
+                    if (navigator.geolocation) {window.navigator.geolocation.getCurrentPosition(console.log, console.error);}})   
     }catch(error){console.log("Error from GET API", error);}
 }
 
