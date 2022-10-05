@@ -30,7 +30,7 @@
 
             <div class="space_between flex_baseline">
                 <div> </div>
-                <div> <button class="sign_up"> Edit Profile </button></div>
+                <div> <button id="edit" class="sign_up"> Edit Profile </button></div>
             </div>
             <section> 
                 <div id="info_container" class="info_container">
@@ -40,37 +40,37 @@
         </div>
 
         <!-- Start of the edit pop up -->
-            <div class="pop_up_edit hide">
-                <div class="cancel space"> <img class="icon" src="./assets/cancel.jpg.png"></div>
+            <div id="edit_pop_up" class="pop_up_edit hide">
+                <div id="cancel" class="cancel space"> <img class="icon" src="./assets/cancel.jpg.png"></div>
                     <div class="inputs">
-                        <div> <input type="email" placeholder="Name"> </div> 
-                        <div> <input type="email" placeholder="Email"> </div>
-                        <div> <input type="text" placeholder="Bio"> </div>
-                        <div> <p> Date of birth </p> <input type="date" > </div>
+                        <div> <input id="name" type="email" placeholder="Name"> </div> 
+                        <div> <input id="email" type="email" placeholder="Email"> </div>
+                        <div> <input id="bio" type="text" placeholder="Bio"> </div>
+                        <div> <p> Date of birth </p> <input id="birth_date" type="date" > </div>
                     <div class="choices">
                         <div class="user_gender">
                             <p class="space"> You are </p>
                             <div class="flex"> 
-                                <div> <button class="space" type="Submit"> <img class="icon" src="./assets/male.png"> </button> </div>
-                                <div> <button class="space" type="Submit"> <img class="icon" src="./assets/female.png"> </button> </div>
+                                <div> <button id="user_male" class="space" type="Submit"> <img class="icon" src="./assets/male.png"> </button> </div>
+                                <div> <button id="user_female" class="space" type="Submit"> <img class="icon" src="./assets/female.png"> </button> </div>
                             </div>
                         </div>
                         <div class="user_choice">
                             <p class="space"> Seeking </p>
                             <div class="flex"> 
-                                <div> <button class="space" type="Submit"> <img class="icon" src="./assets/male.png"> </button> </div>
-                                <div> <button class="space" type="Submit"> <img class="icon" src="./assets/female.png"> </button> </div>
-                                <div> <button class="space" type="Submit"> <img class="icon" src="./assets/both.png"> </button> </div>
+                                <div> <button id="choose_male" class="space" type="Submit"> <img class="icon" src="./assets/male.png"> </button> </div>
+                                <div> <button id="choose_female" class="space" type="Submit"> <img class="icon" src="./assets/female.png"> </button> </div>
+                                <div> <button id="choose_both" class="space" type="Submit"> <img class="icon" src="./assets/both.png"> </button> </div>
                             </div>
                         </div>
                     </div>
-                    <div> <a href="./home.html"> <button class="sign_up" type="submit"> Submit </button> </a> </div>
+                    <div> <a href="./home.html"> <button id="submit_edit" class="sign_up" type="submit"> Submit </button> </a> </div>
                 </div>
             </div>
         <!-- End of the edit pop up -->
 
         <!-- start of the message sent pop up -->
-        <div class="popup hide"> 
+        <div id="confirm_edit" class="popup hide"> 
             <div> <img class="medium_icon" src="./assets/pp.png3"> </div>
             <div> <h3> Profile Edited </h3> </div>
         </div>

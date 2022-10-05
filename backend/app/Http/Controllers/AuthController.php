@@ -43,7 +43,7 @@ class AuthController extends Controller {
         file_put_contents($file,$image_base64);
         $user->pic_url = urlencode($file);
         
-        $user->remember_token = $token;
+        $user->token = $token;
 
         $email = $request->email;
         $new_user = DB::select("select * from users where email= {$email} ");

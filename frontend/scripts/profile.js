@@ -39,15 +39,15 @@ const getUserAPI = async () => {
                         let div = document.createElement("div");
                         div.innerHTML = `
                         <div class="user_information">
-                        <div class="upload">
-                            <button class="btn-wrapper"> 
-                                <i class="img-upload "> <img src="${element.pic_url}"> </i>
-                                <input class="btn-warning" accept="image/jpeg,image/png,image/webp" type="file" >
-                            </button>
-                        </div>
-                        <div> <h2> ${element.name} </h2> </div>
-                    </div>                 
-                    <div class="user_details"> 
+                            <div class="upload">
+                                <button class="btn-wrapper"> 
+                                    <i class="img-upload "> <img src="${element.pic_url}"> </i>
+                                    <input class="btn-warning" accept="image/jpeg,image/png,image/webp" type="file" >
+                                </button>
+                            </div>
+                            <div> <h2> ${element.name} </h2> </div>
+                        </div>                 
+                        <div class="user_details"> 
                             <div class="flex"> <h3 class="space"> Email: </h3> <h3> ${element.email} </h3> </div>
                             <div class="flex"> <h3 class="space"> Age: </h3> <h3> ${age} </h3> </div>
                             <div class="flex"> <h3 class="space"> Location: </h3> <h3> ${city} </h3> </div>
@@ -63,9 +63,7 @@ const getUserAPI = async () => {
                             </div>
                         </div>`;
                         container.appendChild(div); 
-                        addFavorite();
-                        block_user();
-                        sendMessage();
+                        editUser();
 
                     } else if (request.status <= 500){                        
                         console.log("unable to geocode! Response code: " + request.status);
@@ -87,7 +85,83 @@ const calculateAge = (element) => {
     let date =  new Date().getFullYear();
     return date - element.birth_date.slice(0,4);
 }
+
+// call the function
 getUserAPI();
 
+// to edit the profile
+// ____ to handle the buttons _______
+const user_male = document.getElementById("user_male");
+const user_female = document.getElementById("user_female");
+const choose_male = document.getElementById("user_female");
+const choose_female = document.getElementById("user_female");
+const choose_both = document.getElementById("user_female");
+const userMale =  () => { 
+    user_male.classList.add("dark_gray");
+    user_female.classList.remove("dark_gray");
+};
 
+const userFemale = () => { 
+    user_female.classList.add("dark_gray");
+    user_male.classList.remove("dark_gray");
+};
 
+const chooseMale = () => { 
+    choose_male.classList.add("dark_gray");
+    choose_female.classList.remove("dark_gray");
+    choose_both.classList.remove("dark_gray");
+};
+
+const chooseFemale = () => { 
+    choose_male.classList.add("dark_gray");
+    choose_female.classList.remove("dark_gray");
+    choose_both.classList.remove("dark_gray");
+};
+
+const chooseBoth = () => { 
+    choose_male.classList.add("dark_gray");
+    choose_female.classList.remove("dark_gray");
+    choose_both.classList.remove("dark_gray");
+};
+
+// defining the buttons and pop up
+const edit_btn = document.getElementById("edit");
+const edit_pop_up = document.getElementById("edit_pop_up");
+const submit_edit = document.getElementById("submit_edit");
+const cancel = document.getElementById("cancel");
+const confirm_edit = document.getElementById("confirm_edit");
+
+const editUser = () => {
+    edit_btn.addEventListener("click", () => {
+        edit_pop_up.classList.remove("hide"); //show the pop up
+        cancel.addEventListener("click", ()=>{edit_pop_up.classList.add("hide")});
+        submit_edit.addEventListener("click",async () =>  {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const birth_date = document.getElementById("birth_date").value;
+            const bio = document.getElementById("bio").value;
+            if (!name || !email || !birth_date || !bio){
+                document.getElementById("name").classList.add("error");
+                document.getElementById("email").classList.add("error");
+                document.getElementById("birth_date").classList.add("error");
+                document.getElementById("bio").classList.add("error");
+            } else {data_api = new FormData(); // adding the new data to the formdata
+                data_api.append("id", 1)
+                data_api.append("name", name);
+                data_api.append("email", email);
+                data_api.append("birth_date", birth_date);
+                data_api.append("bio", bio);
+                user_male.addEventListener("click", () => {userMale(); data_api.append("gender", male);})
+                user_female.addEventListener("click", () => {userFemale(); data_api.append("gender", female);})
+                choose_male.addEventListener("click", () => {chooseMale(); data_api.append("interested_in", male);})
+                choose_female.addEventListener("click", () => {chooseFemale(); data_api.append("interested_in", female);})
+                choose_both.addEventListener("click", () => {chooseBoth(); data_api.append("interested_in", both);})
+                await axios.post(
+                    website_pages+"create/"+localStorage.getItem("id"),
+                    api_data,)
+                .then((data)=> {console.log(data)});
+                // to confirm and hide the pop up
+                edit_pop_up.classList.add("hide");
+                confirm_edit.classList.remove("hide");
+                setTimeout(function() {confirm_edit.classList.add("hide");;}, 1000);
+}})})};

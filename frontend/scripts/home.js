@@ -1,5 +1,4 @@
 const website_pages = "http://127.0.0.1:8000/api/";
-
  
 const getAPI = async () => {
             try{
@@ -7,6 +6,7 @@ const getAPI = async () => {
                 .then((data) => {
                     console.log(data.data.data);
                     data.data.data.forEach(element => {
+                        if (element.gender == localStorage.getItem("interested_in")){
                         let age = calculateAge(element);
                         details = element.location.split(",")
                         const v = details[0];
@@ -63,12 +63,9 @@ const getAPI = async () => {
                         
                             if (navigator.geolocation) {
                                 window.navigator.geolocation
-                                .getCurrentPosition(console.log, console.error);}})});  
+                                .getCurrentPosition(console.log, console.error);}}})});
             }catch(error){console.log("Error from GET API", error);}
-        }
-
-
-
+}
 
 const calculateAge = (element) => {
     let date =  new Date().getFullYear();
@@ -89,12 +86,9 @@ const addFavorite = () => {
             await axios(website_pages+"addFavorite/"+1+" "+user_id)
                 .then((data) => {
                     console.log(data)})
-    })
-})
-};
+})})};
 
-
-    //This function takes in latitude and longitude of two location and returns the distance between them as the crow flies (in km)
+//This function takes in latitude and longitude of two location and returns the distance between them as the crow flies (in km)
 function calcCrow(lat1, lon1, lat2, lon2) {
       var R = 6371; // km
       var dLat = toRad(lat2-lat1);
@@ -114,6 +108,7 @@ function toRad(Value){
         return Value * Math.PI / 180;
 }
 
+// to know which user is seleced to be able to favorite the user
 const selected_user = () => {
     const selected_user = document.querySelectorAll(".user");
         selected_user.forEach((user) => {
@@ -122,6 +117,6 @@ const selected_user = () => {
 });
 })};
 
-console.log(getAPI());
+getAPI();
 
 
