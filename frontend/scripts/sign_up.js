@@ -76,6 +76,7 @@ signup_interested_in_b.addEventListener("click", ()=>{
     api_data.append("interested_in", "both");
 })
 
+api_token = null;
 const login = () => {
     submit_login_btn.addEventListener("click", async()=>{ 
         if(login_email && login_password){
@@ -86,7 +87,10 @@ const login = () => {
             api_login.append("password", login_password.value)
             await axios.post(
                 website_pages+"login",
-                api_data,)
+                api_data,{ headers:{
+                    'Authorization' : "token " + api_token
+                }
+            })
             .then((data)=> {console.log(data)});
 
             await axios(website_pages+"getUserInfoByEmail/"+login_email.value)
@@ -123,7 +127,10 @@ const signUp = () => {
             api_data.append("birth_date", signup_birth_date.value);
             await axios.post(
                 website_pages+"register",
-                api_data,)
+                api_data,{ headers:{
+                    'Authorization' : "token " + api_token
+                }
+            })
             .then((data)=> {console.log(data)});
 
             await axios(website_pages+"getUserInfoByEmail/"+signup_email.value)

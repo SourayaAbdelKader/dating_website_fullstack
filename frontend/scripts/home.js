@@ -95,7 +95,6 @@ function calcCrow(lat1, lon1, lat2, lon2) {
       return d;
 }
 
-    // Converts numeric degrees to radians
 function toRad(Value){
         return Value * Math.PI / 180;
 }

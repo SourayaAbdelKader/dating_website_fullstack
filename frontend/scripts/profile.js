@@ -1,4 +1,5 @@
 const website_pages = "http://127.0.0.1:8000/api/v/";
+api_token = null;
 // get the user information from the db (speacially if edited)
 const getUserAPI = async () => {
     try{
@@ -203,7 +204,10 @@ const editUser = () => {
             api_data.append("birth_date", birth_date.value);
             await axios.post(
                 website_pages+"update/"+localStorage.getItem("id"),
-                api_data)
+                api_data, { headers:{
+                    'Authorization' : "token " + api_token
+                }
+            })
             .then((data)=> {console.log(data)});
             confirm_edit.classList.remove("hide");
             edit_pop_up.classList.add("hide");

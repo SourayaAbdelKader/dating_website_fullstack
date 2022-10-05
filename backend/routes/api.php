@@ -7,7 +7,7 @@ use App\Http\Controllers\AuthController;
 
 Route::group(["prefix"=> "v"], function(){
    
-    //Route::group(["middleware" => "auth:api"], function(){
+    Route::group(["middleware" => "auth:api"], function(){
         Route::get("/users/{id?}", [UserController::class, 'getUsers'])->name("get-user");
         Route::get("/favorites/{id?}", [UserController::class, 'getFavorites'])->name("get-favorite");
         Route::get("/addFavorite/{id?} {favorite_id?}", [UserController::class, 'addFavorite'])->name("add-favorite");
@@ -19,9 +19,9 @@ Route::group(["prefix"=> "v"], function(){
         Route::get("/getUserInfo/{id?}", [UserController::class, 'getUserInfo'])->name("get-user-info");
         Route::get("/getUserInfoByEmail/{email?}", [UserController::class, 'getUserInfoByEmail'])->name("get-user-info-by-email");
         
-    //}); 
+    }); 
 
-    //Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/login', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
     Route::get("/not_found", [UserController::class, "notFound"])->name("not-found");
 

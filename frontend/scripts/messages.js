@@ -44,7 +44,7 @@ const selected_user = () => {
         localStorage.setItem("selected_user", user.id);
 });
 })};
-
+api_token = null;
 const sendMessage = () => {
     const message = document.querySelectorAll(".reply");
     const send = document.getElementById("message_pop_up");
@@ -67,7 +67,10 @@ const sendMessage = () => {
                 message_content.classList.remove("error");
                 await axios.post(
                     website_pages+"sendMessage",
-                    api_data,)
+                    api_data,{ headers:{
+                        'Authorization' : "token " + api_token
+                    }
+                })
                 .then((data)=> {console.log(data)});
                 send.classList.add("hide");
                 sent_message.classList.remove("hide");

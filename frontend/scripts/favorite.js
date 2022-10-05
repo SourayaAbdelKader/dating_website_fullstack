@@ -26,12 +26,7 @@ const getFavoriteAPI = async () => {
                             var latitude = v;
                             var longitude = l;                        
                             var api_url = 'https://api.opencagedata.com/geocode/v1/json'
-                            var request_url = api_url
-                            + '?'
-                            + 'key=' + api_key
-                            + '&q=' + encodeURIComponent(latitude + ',' + longitude)
-                            + '&pretty=1'
-                            + '&no_annotations=1';
+                            var request_url = api_url+ '?'+ 'key=' + api_key+ '&q=' + encodeURIComponent(latitude + ',' + longitude)+ '&pretty=1'+ '&no_annotations=1';
                             window.localStorage.setItem('city', JSON.stringify(""));
                             var request = new XMLHttpRequest();
                             request.open('GET', request_url, true);
@@ -70,9 +65,7 @@ const getFavoriteAPI = async () => {
                             request.send();  // make the request
                             })
                         
-                            if (navigator.geolocation) {
-                                window.navigator.geolocation
-                                .getCurrentPosition(console.log, console.error);}})});  
+                            if (navigator.geolocation) {window.navigator.geolocation.getCurrentPosition(console.log, console.error);}})});  
             }catch(error){console.log("Error from GET API", error);}
         }
 
