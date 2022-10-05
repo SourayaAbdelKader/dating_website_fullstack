@@ -1,5 +1,5 @@
 // saved the selected user in the local storage
-const website_pages = "http://127.0.0.1:8000/api/";
+const website_pages = "http://127.0.0.1:8000/api/v/";
 
 const getUserAPI = async () => {
     try{

@@ -1,6 +1,6 @@
 // saved the selected user in the local storage
 const user_id = localStorage.getItem("selected_user");
-const website_pages = "http://127.0.0.1:8000/api/";
+const website_pages = "http://127.0.0.1:8000/api/v/";
 
 const getUserAPI = async () => {
     try{

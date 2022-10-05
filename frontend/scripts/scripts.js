@@ -1,4 +1,4 @@
-const website_pages = "http://127.0.0.1:8000/api/v0";
+const website_pages = "http://127.0.0.1:8000/api/v/";
 
 // defining buttons and pop ups
 const login_btn = document.getElementById("login_btn");

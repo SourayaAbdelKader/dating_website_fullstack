@@ -5,56 +5,56 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Validator;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use DB;
+use JWTAuth;
+use JWTFactory;
 
 class AuthController extends Controller {
 
-    public function login() {
-        $credentials = request(['email', 'password']);
-
-        if (! $token = auth()->attempt($credentials)) {
+    public function login(Request $request){
+    	$validator = Validator::make($request->all(), [
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+ 
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+ 
+        if (! $token = JWTAuth::attempt($validator->validated())) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-
+ 
         return $this->respondWithToken($token);
     }
 
-    public function register(){
-        $user = new User;
-        $user->name = $request->name ? $request->name : $user->name;
-        $user->email = $request->email? $request->email : $user->email;
-        $user->password = $request->password? $request->password : $user->password;
-        $user->birth_date = $request->birth_date? $request->birth_date : $user->birth_date;
-        $user->gender = $request->gender? $request->gender : $user->gender;
-        $user->interested_in = $request->interested_in? $request->interested_in : $user->interested_in;
-        $user->bio = $request->bio? $request->bio : $user->bio;
-        $user->location = $request->location? $request->location : $user->location;
-        $user->visible = $request->visible? $request->visible : $user->visible;
-        // for the users picture
-        $picture = $request->pic_url;
-        $folderPath = "profile-photos/";
-        $image_parts = explode(";base64", $picture);
-        $image_type_aux = explode("image/",$image_parts[0]);
-        $image_type = $image_type_aux[1];
-        $image_base64 = base64_decode($image_parts[1]);
-        $file = $folderPath.$username.".png"; 
-        file_put_contents($file,$image_base64);
-        $user->pic_url = urlencode($file);
-        
-        $user->token = $token;
-
-        $email = $request->email;
-        $new_user = DB::select("select * from users where email= {$email} ");
-
-        if($user->save()){
-            return response()->json([
-                "status" => "Success",
-                "data" => $new_user
-            ]);
+    public function register(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string',
+            'email' => 'required|string|email|unique:users',
+            'password' => 'required|string',
+            'birth_date' => 'required',
+            'gender' => 'required',
+            'interested_in' => 'required',
+            'location' => 'required|string',
+        ]);
+ 
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
         }
-
+ 
+        $user = User::create(array_merge(
+                    $validator->validated(),
+                    ['password' => bcrypt($request->password)]
+                ));
+ 
+        return response()->json([
+            'message' => 'User successfully registered',
+            'user' => $user
+        ], 201);
     }
 
     public function me(){
@@ -75,7 +75,8 @@ class AuthController extends Controller {
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'expires_in' => JWTFactory::getTTL() * 60
         ]);
     }
+
 }

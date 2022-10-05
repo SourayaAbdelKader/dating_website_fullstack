@@ -1,4 +1,4 @@
-const website_pages = "http://127.0.0.1:8000/api/";
+const website_pages = "http://127.0.0.1:8000/api/v/";
 
 const getMessagesApi = async () => {
     try{
