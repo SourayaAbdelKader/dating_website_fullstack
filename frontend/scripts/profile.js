@@ -1,6 +1,5 @@
-// saved the selected user in the local storage
 const website_pages = "http://127.0.0.1:8000/api/v/";
-
+// get the user information from the db (speacially if edited)
 const getUserAPI = async () => {
     try{
         await axios(website_pages+"getUserInfo/"+localStorage.getItem("id"))
@@ -8,7 +7,7 @@ const getUserAPI = async () => {
             console.log(data.data.data);
             element = data.data.data[0];
                 let age = calculateAge(element);
-                details = element.location.split(",")
+                details = element.location.split(",") // get the long and the lat
                 const v = details[0];
                 const l = details[1];
                 // this function is used to take the user longtiture and lattitude and get the city he lives in, tried to implement it in a separate function and it won't take parameters
@@ -67,7 +66,6 @@ const getUserAPI = async () => {
                             visible.checked = false;
                         }
                         container.appendChild(div); 
-                        editUser();
                         switchToNotVisible();
 
                     } else if (request.status <= 500){                        
@@ -107,36 +105,9 @@ const switchToNotVisible = ()=>{
 // ____ to handle the buttons _______
 const user_male = document.getElementById("user_male");
 const user_female = document.getElementById("user_female");
-const choose_male = document.getElementById("user_female");
-const choose_female = document.getElementById("user_female");
-const choose_both = document.getElementById("user_female");
-const userMale =  () => { 
-    user_male.classList.add("dark_gray");
-    user_female.classList.remove("dark_gray");
-};
-
-const userFemale = () => { 
-    user_female.classList.add("dark_gray");
-    user_male.classList.remove("dark_gray");
-};
-
-const chooseMale = () => { 
-    choose_male.classList.add("dark_gray");
-    choose_female.classList.remove("dark_gray");
-    choose_both.classList.remove("dark_gray");
-};
-
-const chooseFemale = () => { 
-    choose_male.classList.add("dark_gray");
-    choose_female.classList.remove("dark_gray");
-    choose_both.classList.remove("dark_gray");
-};
-
-const chooseBoth = () => { 
-    choose_male.classList.add("dark_gray");
-    choose_female.classList.remove("dark_gray");
-    choose_both.classList.remove("dark_gray");
-};
+const choose_male = document.getElementById("choose_male");
+const choose_female = document.getElementById("choose_female");
+const choose_both = document.getElementById("choose_both");
 
 // defining the buttons and pop up
 const edit_btn = document.getElementById("edit");
@@ -145,37 +116,100 @@ const submit_edit = document.getElementById("submit_edit");
 const cancel = document.getElementById("cancel");
 const confirm_edit = document.getElementById("confirm_edit");
 
+// show and hide the pop up
+edit_btn.addEventListener("click", ()=>{edit_pop_up.classList.remove("hide");})
+cancel.addEventListener("click", ()=>{edit_pop_up.classList.add("hide");})
+
+// defining the inputs
+const new_name = document.getElementById("name");
+const email = document.getElementById("email");
+const bio = document.getElementById("bio");
+const birth_date = document.getElementById("birth_date");
+
+// to reset all inputs
+const resetAllInputs = () => {
+    new_name.value = "";
+    email.value = "";
+    bio.value="";
+    birth_date.value="";
+    user_male.classList.remove("dark_gray");
+    user_female.classList.remove("dark_gray");
+    choose_male.classList.remove("dark_gray");
+    choose_female.classList.remove("dark_gray");
+    choose_both.classList.remove("dark_gray");
+  };
+
+const empty = (element) => {
+    if(element.value){
+        return false;};
+    element.classList.add("error");
+    return true; 
+}
+
+const validInputs = () => {
+    if(!empty(new_name) && !empty(email) && !empty(bio) && !empty(birth_date)){
+        return true
+    }
+    return false
+}
+
+// to get the data for the sign up
+const api_data = new FormData();
+
+// choose the user gender
+user_male.addEventListener("click", () => {
+    user_male.classList.add("dark_gray");
+    user_female.classList.remove("dark_gray");
+    api_data.append("gender", "male");
+});
+
+user_female.addEventListener("click", () => {
+    user_female.classList.add("dark_gray");
+    user_male.classList.remove("dark_gray");
+    api_data.append("gender", "female");
+});
+
+// choose the interested in gender
+choose_male.addEventListener("click", ()=>{
+    choose_male.classList.add("dark_gray");
+    choose_female.classList.remove("dark_gray");
+    choose_both.classList.remove("dark_gray");
+    api_data.append("interested_in", "male");
+})
+
+choose_female.addEventListener("click", ()=>{
+    choose_female.classList.add("dark_gray");
+    choose_male.classList.remove("dark_gray");
+    choose_both.classList.remove("dark_gray");
+    api_data.append("interested_in", "female");
+})
+
+choose_both.addEventListener("click", ()=>{
+    choose_both.classList.add("dark_gray");
+    choose_male.classList.remove("dark_gray");
+    choose_female.classList.remove("dark_gray");
+    api_data.append("interested_in", "both");
+})
+
 const editUser = () => {
-    edit_btn.addEventListener("click", () => {
-        edit_pop_up.classList.remove("hide"); //show the pop up
-        cancel.addEventListener("click", ()=>{edit_pop_up.classList.add("hide")});
-        submit_edit.addEventListener("click",async () =>  {
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const birth_date = document.getElementById("birth_date").value;
-            const bio = document.getElementById("bio").value;
-            if (!name || !email || !birth_date || !bio){
-                document.getElementById("name").classList.add("error");
-                document.getElementById("email").classList.add("error");
-                document.getElementById("birth_date").classList.add("error");
-                document.getElementById("bio").classList.add("error");
-            } else {data_api = new FormData(); // adding the new data to the formdata
-                data_api.append("id", 1)
-                data_api.append("name", name);
-                data_api.append("email", email);
-                data_api.append("birth_date", birth_date);
-                data_api.append("bio", bio);
-                user_male.addEventListener("click", () => {userMale(); data_api.append("gender", male);})
-                user_female.addEventListener("click", () => {userFemale(); data_api.append("gender", female);})
-                choose_male.addEventListener("click", () => {chooseMale(); data_api.append("interested_in", male);})
-                choose_female.addEventListener("click", () => {chooseFemale(); data_api.append("interested_in", female);})
-                choose_both.addEventListener("click", () => {chooseBoth(); data_api.append("interested_in", both);})
-                await axios.post(
-                    website_pages+"create/"+localStorage.getItem("id"),
-                    api_data,)
-                .then((data)=> {console.log(data)});
-                // to confirm and hide the pop up
-                edit_pop_up.classList.add("hide");
-                confirm_edit.classList.remove("hide");
-                setTimeout(function() {confirm_edit.classList.add("hide");;}, 1000);
-}})})};
+    submit_edit.addEventListener("click", async()=>{ 
+        if (validInputs()){ 
+            new_name.classList.remove("error");
+            email.classList.remove("error");
+            bio.classList.remove("error");
+            birth_date.classList.remove("error");
+            
+            api_data.append("name", new_name.value);
+            api_data.append("email", email.value);
+            api_data.append("bio", bio.value);
+            api_data.append("birth_date", birth_date.value);
+            await axios.post(
+                website_pages+"update/"+localStorage.getItem("id"),
+                api_data)
+            .then((data)=> {console.log(data)});
+            confirm_edit.classList.remove("hide");
+            edit_pop_up.classList.add("hide");
+            setTimeout(function() {confirm_edit.classList.add("hide");;}, 1000);
+}})}
+
+editUser();
