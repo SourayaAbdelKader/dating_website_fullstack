@@ -1,9 +1,9 @@
 const website_pages = "http://127.0.0.1:8000/api/";
 
  
-const getAPI = async () => {
+const getFavoriteAPI = async () => {
             try{
-                await axios(website_pages+"users/"+"1")
+                await axios(website_pages+"favorites/"+"1")
                 .then((data) => {
                     console.log(data.data.data);
                     data.data.data.forEach(element => {
@@ -33,7 +33,7 @@ const getAPI = async () => {
                                 details = location.split(",");
                                 city_place = details[1].split(" ");
                                 city = city_place[1];
-                                const container = document.getElementById("user_container");
+                                const container = document.getElementById("favorite_container");
                                 let div = document.createElement("div");
                                 div.innerHTML = 
                                 `<div id="${element.id}" class="user">
@@ -44,7 +44,7 @@ const getAPI = async () => {
                                     </div>
                                     <div class="space_between">
                                     <div> <p> ${city} </p> </div>
-                                    <div id="like${element.id}" class="like"> <img id="image${element.id}" class="icon cursor" src="./assets/Picture1.png"> </div>
+                                    <div id="like${element.id}" class="like"> <img id="image${element.id}" class="icon cursor" src="./assets/liked.png"> </div>
                                     </div>
                                 </div>`;
                                 container.appendChild(div); 
@@ -75,53 +75,4 @@ const calculateAge = (element) => {
     return date - element.birth_date.slice(0,4);
 }
 
-// to favorite this user 
-const addFavorite = () => {
-    const like = document.querySelectorAll(".like");
-    like.forEach(button => {
-        button.addEventListener("click", async() => { 
-            const person = button.id.slice(4,);
-            console.log(person);
-            localStorage.setItem("selected_user", person);
-            const user_id = localStorage.getItem("selected_user");
-            const like_image = document.getElementById("image"+user_id);
-            like_image.src = "./assets/liked.png";
-            await axios(website_pages+"addFavorite/"+1+" "+user_id)
-                .then((data) => {
-                    console.log(data)})
-    })
-})
-};
-
-
-    //This function takes in latitude and longitude of two location and returns the distance between them as the crow flies (in km)
-function calcCrow(lat1, lon1, lat2, lon2) {
-      var R = 6371; // km
-      var dLat = toRad(lat2-lat1);
-      var dLon = toRad(lon2-lon1);
-      var lat1 = toRad(lat1);
-      var lat2 = toRad(lat2);
-
-      var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
-      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-      var d = R * c;
-      return d;
-}
-
-    // Converts numeric degrees to radians
-function toRad(Value){
-        return Value * Math.PI / 180;
-}
-
-const selected_user = () => {
-    const selected_user = document.querySelectorAll(".user");
-        selected_user.forEach((user) => {
-        user.addEventListener("click", () => {
-        localStorage.setItem("selected_user", user.id);
-});
-})};
-
-console.log(getAPI());
-
-
+getFavoriteAPI();

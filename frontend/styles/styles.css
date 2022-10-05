@@ -150,11 +150,12 @@ option {
 /* Styling the sign up page*/
 .body {
     padding: 2vw;
-    background-image: url("assets/69750453.jpg");
+    background-image: url("./assets/69750453.jpg");
     height: 100%;
+    width:100%;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: top;
+    background-position: center;
     position: relative;
 }
 

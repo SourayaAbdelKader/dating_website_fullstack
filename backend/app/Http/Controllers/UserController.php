@@ -91,7 +91,7 @@ class UserController extends Controller{
     // this function chooses the favorites
     public function getFavorites(Request $request, $id){
         //$id= Auth::$id();
-        $favorites = DB::select("select * from favorites f join users u on u.id=f.favorite_id where user_id= {$id}");
+        $favorites = DB::select("SELECT DISTINCT * from favorites f join users u on u.id=f.favorite_id where user_id= {$id}");
         return response()->json([
             "status" => "Success",
             "data" => $favorites
