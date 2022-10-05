@@ -38,27 +38,29 @@ const getUserAPI = async () => {
                         // to construct the user component 
                         const container = document.getElementById("show_container");
                         let div = document.createElement("div");
-                        div.innerHTML = `<div class="user_information">
-                        <div class=" flex">
-                            <div> <img class="user_profile_picture space" src="${element.pic_url}"> </div>
-                            <div class="user_details"> 
-                                <div> <h2> ${element.name} </h2> </div>
-                                <div> <h3> ${age} y.o </h3> </div>
-                                <div> <h3> ${city} </h3> </div>
-                                <div> <h3> ${element.gender} </h3> </div>
-                                <div class="flex"> 
-                                    <h3 class="space"> Interested In : </h3>
-                                    <h3> ${element.interested_in} </h3>
-                                </div>
-                                <div> <p> ${element.bio} </p> </div>
-                                <div class="icons flex_center">
-                                    <div> <button id="like" type="submit"> <img id="like_image" class="message_icon" src="./assets/Picture1.png"> </button> </div>
-                                    <div> <button id="message" type="submit"> <img class="message_icon" src="./assets/message.png"> </button> </div>
-                                    <div> <button id="block" type="submit"> <img id="block_image" class="message_icon" src="./assets/block.png"> </button>  </div>
+                        div.innerHTML = `
+                        <div class="user_information">
+                            <div class=" flex">
+                                <div> <img class="user_profile_picture space" src="${element.pic_url}"> </div>
+                                    <div class="user_details"> 
+                                        <div> <h2> ${element.name} </h2> </div>
+                                        <div> <h3> ${age} y.o </h3> </div>
+                                        <div> <h3> ${city} </h3> </div>
+                                        <div> <h3> ${element.gender} </h3> </div>
+                                        <div class="flex"> 
+                                            <h3 class="space"> Interested In : </h3>
+                                            <h3> ${element.interested_in} </h3>
+                                        </div>
+                                        <div> <p> ${element.bio} </p> </div>
+                                        <div class="icons flex_center">
+                                            <div> <button id="like" type="submit"> <img id="like_image" class="message_icon" src="./assets/Picture1.png"> </button> </div>
+                                            <div> <button id="message" type="submit"> <img class="message_icon" src="./assets/message.png"> </button> </div>
+                                            <div> <button id="block" type="submit"> <img id="block_image" class="message_icon" src="./assets/block.png"> </button>  </div>
+                                        </div>
+                                    </div>    
                                 </div>
                             </div>
-                        </div>
-                    </div>`;
+                        </div>`;
                         container.appendChild(div); 
                         addFavorite();
                         block_user();
@@ -144,4 +146,3 @@ const sendMessage = () => {
             }
         })        
 })};
-

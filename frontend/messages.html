@@ -3,7 +3,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> User </title>
+        <title> Messages </title>
         <link rel="stylesheet" href="./styles/styles.css" />
         <link rel="icon" type="image/x-icon" href="./assets/logo.png" />
     </head>
@@ -26,33 +26,27 @@
             </div>
         </div>
         <!-- Start of the screen body-->
-        <div class="message_container"> 
-            <div class="message flex_center space_between"> 
-                <div class="flex_center">
-                    <div> <img class="sender_image space" src="./assets/Online-Dating-Site-1920x1280.jpeg"> </div>
-                    <div> <h3> Sender name </h3> </div>
-                </div>
-                <div class="flex_center"> <p> bla bla bla </p> </div>
-                <div> <button class="sign_up" type="submit"> Reply </button></div>
-            </div>
+        <div id="message_container" class="message_container"> 
+
         </div>
 
         <!-- Start of the message pop up -->
-        <div class="popup hide"> 
-            <div class="cancel space"> <img class="icon" src="./assets/cancel.jpg.png"></div>
+        <div id="message_pop_up" class="popup hide"> 
+            <div id="cancel" class="cancel space"> <img class="icon" src="./assets/cancel.jpg.png"></div>
             <div> <img class="message_icon" src="./assets/message.png"> </div>
-            <div> <textarea rows="4" cols="50" placeholder="Your Message"></textarea> </div>
-            <div> <button class="send"> Send </button></div>
+            <div> <textarea id="message_content" rows="4" cols="50" placeholder="Your Message"></textarea> </div>
+            <div> <button id="send_message_btn" class="send"> Send </button></div>
         </div>
         <!-- End of the message pop up -->
 
         <!-- start of the message sent pop up -->
-        <div class="popup hide"> 
+        <div id="sent_message" class="popup hide"> 
             <div> <img class="medium_icon" src="./assets/Sent-message.png"> </div>
             <div> <h3> Message Sent </h3> </div>
         </div>
         <!-- End of the message sent pop up -->
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+        <script src="./scripts/messages.js"></script>
     </body>
 </html>

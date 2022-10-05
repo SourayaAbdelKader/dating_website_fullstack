@@ -35,6 +35,7 @@ const getFavoriteAPI = async () => {
                                 city = city_place[1];
                                 const container = document.getElementById("favorite_container");
                                 let div = document.createElement("div");
+                                
                                 div.innerHTML = 
                                 `<div id="${element.id}" class="user">
                                     <div class="picture"> <img class="user_image" src="${element.pic_url}"> </div>
@@ -50,7 +51,6 @@ const getFavoriteAPI = async () => {
                                 container.appendChild(div); 
 
                                 selected_user();
-                                addFavorite(); // works when you click twice on a user
 
                             } else if (request.status <= 500){                        
                                 console.log("unable to geocode! Response code: " + request.status);
@@ -67,12 +67,17 @@ const getFavoriteAPI = async () => {
             }catch(error){console.log("Error from GET API", error);}
         }
 
-
-
-
 const calculateAge = (element) => {
     let date =  new Date().getFullYear();
     return date - element.birth_date.slice(0,4);
 }
+
+const selected_user = () => {
+    const selected_user = document.querySelectorAll(".user");
+        selected_user.forEach((user) => {
+        user.addEventListener("click", () => {
+        localStorage.setItem("selected_user", user.id);
+});
+})};
 
 getFavoriteAPI();

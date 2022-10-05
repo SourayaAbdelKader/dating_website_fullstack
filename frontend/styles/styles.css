@@ -447,6 +447,7 @@ textarea {
 .message_container {
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 2vw;

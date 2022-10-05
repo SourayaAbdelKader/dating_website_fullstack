@@ -56,7 +56,6 @@ const resetAllInputs = () => {
     login_email.value = "";
     login_password.value = "";
     signup_email.value = "";
-    signup_location.value = "";
     signup_gender_m.classList.remove("dark_gray");
     signup_gender_f.classList.remove("dark_gray");
     signup_interested_in_b.classList.remove("dark_gray");
