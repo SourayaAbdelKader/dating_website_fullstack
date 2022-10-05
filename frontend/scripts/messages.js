@@ -10,7 +10,7 @@ const getMessagesApi = async () => {
             const container = document.getElementById("message_container");
             let div = document.createElement("div");
             div.innerHTML = 
-            `<div id="${element.receiver_id}" class="message flex_center space_between"> 
+            `<div id="${element.receiver_id}" class="message flex_center space_between width margin"> 
                 <div class="flex_center">
                     <div> <img class="sender_image space" src="${element.pic_url}"> </div>
                     <div> <a href="./show_user.html" <h3> ${element.name} </h3> </a> </div>

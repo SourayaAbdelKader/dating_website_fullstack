@@ -469,3 +469,21 @@ textarea {
     height: 40px;
     width: 40px;
 }
+
+@media only screen and (max-width: 975px) {
+    .flex_column {
+        grid-template-columns: repeat(1, auto) !important;
+    }
+
+    .width {
+        width: 75vw;
+    }
+
+    .margin{
+        margin-left: 5vw;
+    }
+
+    .margin-top {
+        margin-top: 0.1vw;
+    }
+}
