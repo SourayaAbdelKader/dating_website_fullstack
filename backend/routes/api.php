@@ -15,7 +15,7 @@ Route::group(["prefix"=> "v"], function(){
         Route::get("/messages/{id?}", [UserController::class, 'getMessages'])->name("get-message");
         Route::post("/sendMessage", [UserController::class, 'sendMessage'])->name("send-message");
         Route::post("/notVisible", [UserController::class, 'notVisible'])->name("not-visible");
-        Route::post("/create/{id?}", [UserController::class, 'createOrUpdateUser'])->name("update-user");
+        Route::post("/update/{id?}", [UserController::class, 'updateUser'])->name("update-user");
         Route::get("/getUserInfo/{id?}", [UserController::class, 'getUserInfo'])->name("get-user-info");
         Route::get("/getUserInfoByEmail/{email?}", [UserController::class, 'getUserInfoByEmail'])->name("get-user-info-by-email");
         

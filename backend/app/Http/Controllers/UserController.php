@@ -14,13 +14,10 @@ use App\Models\Message;
 
 class UserController extends Controller{
 
-    public function createOrUpdateUser(Request $request, $id = "add"){
-        if($id == "add"){
-            $user = new User; 
-        }else{
-            //$id= Auth::$id();
-            $user = User::find($id);
-        }
+    public function updateUser(Request $request, $id){
+        //$id= Auth::$id();
+        $user = User::find($id);
+        
         $user->name = $request->name ? $request->name : $user->name;
         $user->email = $request->email? $request->email : $user->email;
         $user->password = $request->password? $request->password : $user->password;
@@ -30,30 +27,18 @@ class UserController extends Controller{
         $user->bio = $request->bio? $request->bio : $user->bio;
         $user->location = $request->location? $request->location : $user->location;
         $user->visible = $request->visible? $request->visible : $user->visible;
-        // for the users picture
-        $picture = $request->pic_url;
-        $folderPath = "profile-photos/";
-        $image_parts = explode(";base64", $picture);
-        $image_type_aux = explode("image/",$image_parts[0]);
-        $image_type = $image_type_aux[1];
-        $image_base64 = base64_decode($image_parts[1]);
-        $file = $folderPath.$username.".png"; 
-        file_put_contents($file,$image_base64);
-        $user->pic_url = urlencode($file);
-
-        $email = $request->email;
-        $new_user = DB::select("select * from users where email= {$email} ");
+        $user->pic_url  = $request->pic_url ? $request->pic_url  : $user->pic_url ;
 
         if($user->save()){
             return response()->json([
                 "status" => "Success",
-                "data" => $new_user
+                "data" => $user
             ]);
         }
 
         return response()->json([
             "status" => "Error",
-            "data" => "Error creating a model"
+            "data" => "Error updating a model"
         ]);
     }
 
