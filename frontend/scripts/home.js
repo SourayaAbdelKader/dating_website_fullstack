@@ -17,12 +17,7 @@ const getAPI = async () => {
                             var latitude = v;
                             var longitude = l;                        
                             var api_url = 'https://api.opencagedata.com/geocode/v1/json'
-                            var request_url = api_url
-                            + '?'
-                            + 'key=' + api_key
-                            + '&q=' + encodeURIComponent(latitude + ',' + longitude)
-                            + '&pretty=1'
-                            + '&no_annotations=1';
+                            var request_url = api_url + '?' + 'key=' + api_key + '&q=' + encodeURIComponent(latitude + ',' + longitude)+ '&pretty=1'+ '&no_annotations=1';
                             window.localStorage.setItem('city', JSON.stringify(""));
                             var request = new XMLHttpRequest();
                             request.open('GET', request_url, true);
@@ -114,8 +109,7 @@ const selected_user = () => {
         selected_user.forEach((user) => {
         user.addEventListener("click", () => {
         localStorage.setItem("selected_user", user.id);
-});
-})};
+})})};
 
 getAPI();
 

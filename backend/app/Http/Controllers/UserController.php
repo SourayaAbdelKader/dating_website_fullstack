@@ -76,6 +76,15 @@ class UserController extends Controller{
         ]);
     }
 
+    public function getUserInfoByEmail(Request $request, $email){
+        //$id= Auth::$id();
+        $user = DB::select("select * from users where email = '{$email}' ");
+        return response()->json([
+            "status" => "Success",
+            "data" => $user
+        ]);
+    }
+
     // this function chooses the users which are not blocked to get displayed
     public function getUsers(Request $request, $id){
         //$id= Auth::$id();

@@ -17,10 +17,12 @@ Route::group(["prefix"=> "v"], function(){
         Route::post("/notVisible", [UserController::class, 'notVisible'])->name("not-visible");
         Route::post("/create/{id?}", [UserController::class, 'createOrUpdateUser'])->name("update-user");
         Route::get("/getUserInfo/{id?}", [UserController::class, 'getUserInfo'])->name("get-user-info");
+        Route::get("/getUserInfoByEmail/{email?}", [UserController::class, 'getUserInfoByEmail'])->name("get-user-info-by-email");
+        
     //}); 
 
     //Route::post('/login', [AuthController::class, 'login']);
-    //Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/register', [AuthController::class, 'register']);
     Route::get("/not_found", [UserController::class, "notFound"])->name("not-found");
 
 });

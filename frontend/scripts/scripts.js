@@ -8,9 +8,10 @@ const login_modal = document.getElementById("login_modal");
 const cancel_btn = document.getElementById("cancel_btn");
 
 // sign up inputs
+const signup_name = document.getElementById("signup_name");
 const signup_email = document.getElementById("signup_email");
 const signup_password = document.getElementById("signup_password");
-const signup_location = document.getElementById("singnup_location");
+const signup_birth_date = document.getElementById("signup_birth_date");
 const signup_gender_m = document.getElementById("signup_gender_male");
 const signup_gender_f = document.getElementById("signup_gender_female");
 const signup_interested_in_m = document.getElementById("signup_interested_in_male");
@@ -20,36 +21,6 @@ const signup_interested_in_b = document.getElementById("signup_interested_in_bot
 // sign in inputs
 const login_email = document.getElementById("login_email");
 const login_password = document.getElementById("login_password");
-
-//
-// to choose a gender
-const userMale =  () => { 
-    signup_gender_m.classList.add("dark_gray");
-    signup_gender_f.classList.remove("dark_gray");
-};
-
-const userFemale = () => { 
-    signup_gender_f.classList.add("dark_gray");
-    signup_gender_m.classList.remove("dark_gray");
-};
-
-const chooseMale = () => { 
-    signup_interested_in_m.classList.add("dark_gray");
-    signup_interested_in_f.classList.remove("dark_gray");
-    signup_interested_in_b.classList.remove("dark_gray");
-};
-
-const chooseFemale = () => { 
-    signup_interested_in_f.classList.add("dark_gray");
-    signup_interested_in_m.classList.remove("dark_gray");
-    signup_interested_in_b.classList.remove("dark_gray");
-};
-
-const chooseBoth = () => { 
-    signup_interested_in_b.classList.add("dark_gray");
-    signup_interested_in_f.classList.remove("dark_gray");
-    signup_interested_in_m.classList.remove("dark_gray");
-};
 
 // to reset all inputs
 const resetAllInputs = () => {
@@ -63,7 +34,95 @@ const resetAllInputs = () => {
     signup_interested_in_m.classList.remove("dark_gray");
   };
 
+const empty = (element) => {
+    if(element.value){
+        return false;};
+    element.classList.add("error");
+    return true; 
+}
 
+const validInputs = () => {
+    if(!empty(signup_name) && !empty(signup_email) && !empty(signup_password) && !empty(signup_birth_date)){
+        return true
+    }
+    return false
+}
+
+// to get the data for the sign up
+const api_data = new FormData();
+
+// choose the user gender
+signup_gender_m.addEventListener("click", () => {
+    signup_gender_m.classList.add("dark_gray");
+    signup_gender_f.classList.remove("dark_gray");
+    api_data.append("gender", "male");
+});
+
+signup_gender_f.addEventListener("click", () => {
+    signup_gender_f.classList.add("dark_gray");
+    signup_gender_m.classList.remove("dark_gray");
+    api_data.append("gender", "female");
+});
+
+// choose the interested in gender
+signup_interested_in_m.addEventListener("click", ()=>{
+    signup_interested_in_m.classList.add("dark_gray");
+    signup_interested_in_f.classList.remove("dark_gray");
+    signup_interested_in_b.classList.remove("dark_gray");
+    api_data.append("interested_in", "male");
+})
+
+signup_interested_in_f.addEventListener("click", ()=>{
+    signup_interested_in_f.classList.add("dark_gray");
+    signup_interested_in_m.classList.remove("dark_gray");
+    signup_interested_in_b.classList.remove("dark_gray");
+    api_data.append("interested_in", "female");
+})
+
+signup_interested_in_m.addEventListener("click", ()=>{
+    signup_interested_in_b.classList.add("dark_gray");
+    signup_interested_in_f.classList.remove("dark_gray");
+    signup_interested_in_m.classList.remove("dark_gray");
+    api_data.append("interested_in", "both");
+})
+
+
+const signUp = () => {
+    signup_btn.addEventListener("click", async()=>{ 
+        if (validInputs()){ 
+            signup_name.classList.remove("error");
+            signup_email.classList.remove("error");
+            signup_password.classList.remove("error");
+            signup_birth_date.classList.remove("error");
+            
+            api_data.append("name", signup_name.value);
+            api_data.append("email", signup_email.value);
+            api_data.append("password", signup_password.value);
+            api_data.append("birth_date", signup_birth_date.value);
+            await axios.post(
+                website_pages+"register",
+                api_data,)
+            .then((data)=> {console.log(data)});
+
+            await axios(website_pages+"getUserInfoByEmail/"+signup_email.value)
+            .then((data) => {
+                console.log(data.data.data);
+                element = data.data.data[0];
+                localStorage.setItem("id", element.id);
+                localStorage.setItem("name", element.name);
+                localStorage.setItem("email", element.email);
+                localStorage.setItem("location", element.location);
+                localStorage.setItem("birth_date", element.birth_date);
+                localStorage.setItem("gender", element.gender);
+                localStorage.setItem("interested_in", element.interested_in);
+                localStorage.setItem("bio", element.bio);
+                localStorage.setItem("visible", element.visible);
+                localStorage.setItem("pic_url", element.pic_url);
+            })
+        window.location.href = "./home.html"
+}})}
+
+signUp();
 // show and hide login pop up
 const showLoginModal = () => {
     resetAllInputs();
@@ -77,6 +136,8 @@ const hideLoginModal = () => {
 
 login_btn.addEventListener("click", showLoginModal);
 cancel_btn.addEventListener("click", hideLoginModal);
+
+//
 
 function uploadImage() {
     if (this.files && this.files[0]) {
@@ -106,6 +167,7 @@ navigator.geolocation.getCurrentPosition(function(location) {
     var api_key = '294a9c72c0fd403a9592db51a8764026';
     var latitude = location.coords.latitude;
     var longitude = location.coords.longitude;
+    api_data.append("location", latitude+","+longitude)
 
     var api_url = 'https://api.opencagedata.com/geocode/v1/json'
 
