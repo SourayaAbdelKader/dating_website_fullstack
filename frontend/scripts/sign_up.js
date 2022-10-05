@@ -22,18 +22,7 @@ const signup_interested_in_b = document.getElementById("signup_interested_in_bot
 const login_email = document.getElementById("login_email");
 const login_password = document.getElementById("login_password");
 
-// to reset all inputs
-const resetAllInputs = () => {
-    login_email.value = "";
-    login_password.value = "";
-    signup_email.value = "";
-    signup_gender_m.classList.remove("dark_gray");
-    signup_gender_f.classList.remove("dark_gray");
-    signup_interested_in_b.classList.remove("dark_gray");
-    signup_interested_in_f.classList.remove("dark_gray");
-    signup_interested_in_m.classList.remove("dark_gray");
-  };
-
+// check if an input is empty
 const empty = (element) => {
     if(element.value){
         return false;};
@@ -41,6 +30,7 @@ const empty = (element) => {
     return true; 
 }
 
+// validate the inputs (if there are empty or not)
 const validInputs = () => {
     if(!empty(signup_name) && !empty(signup_email) && !empty(signup_password) && !empty(signup_birth_date)){
         return true
@@ -85,6 +75,39 @@ signup_interested_in_b.addEventListener("click", ()=>{
     signup_interested_in_m.classList.remove("dark_gray");
     api_data.append("interested_in", "both");
 })
+
+const login = () => {
+    submit_login_btn.addEventListener("click", async()=>{ 
+        if(login_email && login_password){
+            login_email.classList.remove("error");
+            login_password.classList.remove("error");
+            api_login = new FormData();
+            api_login.append("email",login_email.value);
+            api_login.append("password", login_password.value)
+            await axios.post(
+                website_pages+"login",
+                api_data,)
+            .then((data)=> {console.log(data)});
+
+            await axios(website_pages+"getUserInfoByEmail/"+login_email.value)
+            .then((data) => {
+                console.log(data.data.data);
+                element = data.data.data[0];
+                localStorage.setItem("id", element.id);
+                localStorage.setItem("name", element.name);
+                localStorage.setItem("email", element.email);
+                localStorage.setItem("location", element.location);
+                localStorage.setItem("birth_date", element.birth_date);
+                localStorage.setItem("gender", element.gender);
+                localStorage.setItem("interested_in", element.interested_in);
+                localStorage.setItem("bio", element.bio);
+                localStorage.setItem("visible", element.visible);
+                localStorage.setItem("pic_url", element.pic_url);
+            })
+        window.location.href = "./home.html"
+        } else { login_email.classList.add("error"); login_password.classList.add("error"); }
+    })
+}
 
 const signUp = () => {
     signup_btn.addEventListener("click", async()=>{ 
@@ -136,20 +159,6 @@ const hideLoginModal = () => {
 login_btn.addEventListener("click", showLoginModal);
 cancel_btn.addEventListener("click", hideLoginModal);
 
-function uploadImage() {
-    if (this.files && this.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        base64string_profile = reader.result
-          .replace("data:", "")
-          .replace(/^.+,/, "");
-        img_show.src = e.target.result;
-      };
-      reader.readAsDataURL(this.files[0]);
-    }
-};
-
-
 // on window load if there is a user redirect:
 const checkUser = () => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -157,6 +166,7 @@ const checkUser = () => {
 };
 window.addEventListener("load", checkUser);
 
+// to know where the user is : get the latitude and the longitude and then get the city name 
 navigator.geolocation.getCurrentPosition(function(location) {
     console.log(location.coords.latitude);
     console.log(location.coords.longitude);
@@ -167,45 +177,23 @@ navigator.geolocation.getCurrentPosition(function(location) {
     api_data.append("location", latitude+","+longitude)
 
     var api_url = 'https://api.opencagedata.com/geocode/v1/json'
-
-    var request_url = api_url
-    + '?'
-    + 'key=' + api_key
-    + '&q=' + encodeURIComponent(latitude + ',' + longitude)
-    + '&pretty=1'
-    + '&no_annotations=1';
-
+    var request_url = api_url+ '?'+ 'key=' + api_key+ '&q=' + encodeURIComponent(latitude + ',' + longitude)+ '&pretty=1'+ '&no_annotations=1';
     var request = new XMLHttpRequest();
     request.open('GET', request_url, true);
-
     request.onload = function() {
-
     if (request.status === 200){
-        // Success!
         var data = JSON.parse(request.responseText);
         console.log(data.results[0].formatted); // print the location
-
     } else if (request.status <= 500){
-        // We reached our target server, but it returned an error
-
         console.log("unable to geocode! Response code: " + request.status);
         var data = JSON.parse(request.responseText);
         console.log('error msg: ' + data.status.message);
-    } else {
-        console.log("server error");
-    }
+    } else {console.log("server error");}
     };
-
-request.onerror = function() {
-  // There was a connection error of some sort
-  console.log("unable to connect to server");
-};
-
+request.onerror = function() {console.log("unable to connect to server");};
 request.send();  // make the request
-
-  })
 
 if (navigator.geolocation) {
     window.navigator.geolocation
     .getCurrentPosition(console.log, console.error);
-}
+}})
