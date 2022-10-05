@@ -4,8 +4,7 @@ const getUserAPI = async () => {
     try{
         await axios(website_pages+"getUserInfo/"+localStorage.getItem("id"))
         .then((data) => {
-            console.log(data.data.data);
-            element = data.data.data[0];
+                element = data.data.data[0];
                 let age = calculateAge(element);
                 details = element.location.split(",") // get the long and the lat
                 const v = details[0];
@@ -97,8 +96,7 @@ const switchToNotVisible = ()=>{
         api_data = new FormData();
         api_data.append("id", localStorage.getItem("id"))
         await axios.post(website_pages+"notVisible", api_data)
-            .then((data) => {
-                console.log(data.data.data);
+            .then((data) => {console.log(data.data.data);
 })})};
 
 // to edit the profile

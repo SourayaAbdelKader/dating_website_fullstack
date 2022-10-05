@@ -1,19 +1,20 @@
 const website_pages = "http://127.0.0.1:8000/api/v/";
 
- 
 const getFavoriteAPI = async () => {
             try{
                 await axios(website_pages+"favorites/"+localStorage.getItem("id"))
                 .then((data) => {
+                    // display no favorites yet
                     if (data.data.data.length == 0) {
                         const container = document.getElementById("favorite_container");
                         let div = document.createElement("div");
                         div.innerHTML = 
-                        `<div  id="sent_message" class="popup"> 
+                        `<div class="flec-center"> 
                             <div> <h3> No Favorites yet </h3> </div>
                         </div>`;
                         container.appendChild(div); 
                     }
+                    // display favorites
                     data.data.data.forEach(element => {
                         let age = calculateAge(element);
                         details = element.location.split(",")

@@ -4,16 +4,18 @@ const getMessagesApi = async () => {
     try{
         await axios(website_pages+"messages/"+localStorage.getItem("id"))
         .then((data) => {
+            // display no messages
             if (data.data.data.length == 0) {
                 const container = document.getElementById("message_container");
                 let div = document.createElement("div");
                 div.innerHTML = 
-                `<div  id="sent_message" class="popup"> 
+                `<div  id="sent_message" class="flex_center"> 
                     <div> <img class="medium_icon" src="./assets/R.png"> </div>
                     <div> <h3> No Messages yet </h3> </div>
                 </div>`;
                 container.appendChild(div); 
             }
+            // display messages
             data.data.data.forEach(element => {
             console.log(element);
             // to construct the user component 
@@ -53,14 +55,11 @@ const sendMessage = () => {
     message.forEach(one => {
         one.addEventListener("click", () => {
         send.classList.remove("hide");
-        cancel.addEventListener("click", ()=> {
-            send.classList.add("hide");});
+        cancel.addEventListener("click", ()=> {send.classList.add("hide");});
         send_message_btn.addEventListener("click", async()=>{
-            if(!message_content.value){
-                message_content.classList.add("error");
-            }
+            if(!message_content.value){message_content.classList.add("error");}
             if(message_content.value){
-                const id = one.id.slice(5, one.id.length);
+                const id = one.id.slice(5, one.id.length); //getting the id of the message sender from a div id
                 let api_data = new FormData();
                 api_data.append("user_id", localStorage.getItem("id"));
                 api_data.append("receiver_id",id);

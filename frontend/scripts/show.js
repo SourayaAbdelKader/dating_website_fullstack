@@ -6,7 +6,6 @@ const getUserAPI = async () => {
     try{
         await axios(website_pages+"getUserInfo/"+user_id)
         .then((data) => {
-            console.log(data.data.data);
             element = data.data.data[0];
                 let age = calculateAge(element);
                 details = element.location.split(",")
@@ -18,12 +17,7 @@ const getUserAPI = async () => {
                     var latitude = v;
                     var longitude = l;                        
                     var api_url = 'https://api.opencagedata.com/geocode/v1/json'
-                    var request_url = api_url
-                    + '?'
-                    + 'key=' + api_key
-                    + '&q=' + encodeURIComponent(latitude + ',' + longitude)
-                    + '&pretty=1'
-                    + '&no_annotations=1';
+                    var request_url = api_url+ '?'+ 'key=' + api_key+ '&q=' + encodeURIComponent(latitude + ',' + longitude)+ '&pretty=1'+ '&no_annotations=1';
                     window.localStorage.setItem('city', JSON.stringify(""));
                     var request = new XMLHttpRequest();
                     request.open('GET', request_url, true);
@@ -75,9 +69,7 @@ const getUserAPI = async () => {
                     request.send();  // make the request
                     })
                 
-                    if (navigator.geolocation) {
-                        window.navigator.geolocation
-                        .getCurrentPosition(console.log, console.error);}})   
+                    if (navigator.geolocation) {window.navigator.geolocation.getCurrentPosition(console.log, console.error);}})   
     }catch(error){console.log("Error from GET API", error);}
 }
 
@@ -95,8 +87,7 @@ const addFavorite = () => {
     like.addEventListener("click", async() => {
         like_image.src = "./assets/liked.png";
         await axios(website_pages+"addFavorite/"+localStorage.getItem("id")+" "+user_id)
-            .then((data) => {
-                console.log(data)})
+            .then((data) => {console.log(data)})
 })};
 
 const block_user = () => {
@@ -106,8 +97,7 @@ const block_user = () => {
     block.addEventListener("click", async() => {
         block_image.src = "./assets/blocked.png";
         await axios(website_pages+"block/"+localStorage.getItem("id")+" "+user_id)
-            .then((data) => {
-                console.log(data)})
+            .then((data) => {console.log(data)})
         block_message.classList.remove("hide");
 })};
 

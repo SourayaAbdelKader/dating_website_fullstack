@@ -1,13 +1,11 @@
 const website_pages = "http://127.0.0.1:8000/api/v/";
  
-const getAPI = async () => {
+const getUsers = async (gender) => {
             try{
                 await axios(website_pages+"users/"+localStorage.getItem("id"))
                 .then((data) => {
-                    console.log(data.data.data);
                     data.data.data.forEach(element => {
-
-                        if (element.gender == localStorage.getItem("interested_in")){
+                        if (element.gender == gender){
                         let age = calculateAge(element);
                         details = element.location.split(",")
                         const v = details[0];
@@ -110,6 +108,8 @@ const selected_user = () => {
         localStorage.setItem("selected_user", user.id);
 })})};
 
-getAPI();
-
+// to choose which users to display
+if (localStorage.getItem("interested_in") == "male"){getUsers("male");}
+if (localStorage.getItem("interested_in") == "female"){getUsers("female");}
+if (localStorage.getItem("interested_in") == "both"){getUsers("female");getUsers("male");}
 
