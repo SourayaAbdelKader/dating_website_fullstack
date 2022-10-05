@@ -146,9 +146,9 @@ class UserController extends Controller{
         ]);
     }
 
-    public function notVisible(Request $request, $id){
+    public function notVisible(Request $request){
         //$id= Auth::$id();
-        $user = User::find($id);
+        $user = User::find($request->id);
         $user->visible = "0";
         $user->save();
         return redirect()->back()->with('status','Updated Successfully');

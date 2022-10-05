@@ -57,13 +57,18 @@ const getUserAPI = async () => {
                             <div class="flex_center"> 
                                 <h3 class="space"> Visibility </h3> 
                                 <label class="switch">
-                                    <input type="checkbox" checked>
+                                    <input id="visible" type="checkbox checked">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
                         </div>`;
+                        const visible = document.getElementById("visible");
+                        if(localStorage.getItem("visible")== 0){
+                            visible.checked = false;
+                        }
                         container.appendChild(div); 
                         editUser();
+                        switchToNotVisible();
 
                     } else if (request.status <= 500){                        
                         console.log("unable to geocode! Response code: " + request.status);
@@ -86,6 +91,17 @@ const calculateAge = (element) => {
 
 // call the function
 getUserAPI();
+
+// to make the user unvisible 
+const switchToNotVisible = ()=>{
+    const visible = document.getElementById("visible");
+    visible.addEventListener("click", async () => {
+        api_data = new FormData();
+        api_data.append("id", localStorage.getItem("id"))
+        await axios.post(website_pages+"notVisible", api_data)
+            .then((data) => {
+                console.log(data.data.data);
+})})};
 
 // to edit the profile
 // ____ to handle the buttons _______
