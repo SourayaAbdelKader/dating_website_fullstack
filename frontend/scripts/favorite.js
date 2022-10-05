@@ -3,7 +3,7 @@ const website_pages = "http://127.0.0.1:8000/api/v/";
  
 const getFavoriteAPI = async () => {
             try{
-                await axios(website_pages+"favorites/"+"1")
+                await axios(website_pages+"favorites/"+localStorage.getItem("id"))
                 .then((data) => {
                     console.log(data.data.data);
                     data.data.data.forEach(element => {

@@ -2,7 +2,7 @@ const website_pages = "http://127.0.0.1:8000/api/v/";
 
 const getMessagesApi = async () => {
     try{
-        await axios(website_pages+"messages/"+1)
+        await axios(website_pages+"messages/"+localStorage.getItem("id"))
         .then((data) => {
             data.data.data.forEach(element => {
             console.log(element);
@@ -51,9 +51,8 @@ const sendMessage = () => {
             }
             if(message_content.value){
                 const id = one.id.slice(5, one.id.length);
-                console.log(id)
                 let api_data = new FormData();
-                api_data.append("user_id", 1);
+                api_data.append("user_id", localStorage.getItem("id"));
                 api_data.append("receiver_id",id);
                 api_data.append("message", message_content.value);
                 message_content.classList.remove("error");

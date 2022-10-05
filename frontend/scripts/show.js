@@ -94,7 +94,7 @@ const addFavorite = () => {
     const like_image = document.getElementById("like_image");
     like.addEventListener("click", async() => {
         like_image.src = "./assets/liked.png";
-        await axios(website_pages+"addFavorite/"+1+" "+user_id)
+        await axios(website_pages+"addFavorite/"+localStorage.getItem("id")+" "+user_id)
             .then((data) => {
                 console.log(data)})
 })};
@@ -105,7 +105,7 @@ const block_user = () => {
     const block_message = document.getElementById("block_pop_up");
     block.addEventListener("click", async() => {
         block_image.src = "./assets/blocked.png";
-        await axios(website_pages+"block/"+1+" "+user_id)
+        await axios(website_pages+"block/"+localStorage.getItem("id")+" "+user_id)
             .then((data) => {
                 console.log(data)})
         block_message.classList.remove("hide");
@@ -130,7 +130,7 @@ const sendMessage = () => {
             if(message_content.value){
                 console.log(message_content.value);
                 let api_data = new FormData();
-                api_data.append("user_id", 1);
+                api_data.append("user_id", localStorage.getItem("id"));
                 api_data.append("receiver_id", user_id);
                 api_data.append("message", message_content.value);
                 message_content.classList.remove("error");

@@ -2,11 +2,12 @@ const website_pages = "http://127.0.0.1:8000/api/v/";
  
 const getAPI = async () => {
             try{
-                await axios(website_pages+"users/"+"1")
+                await axios(website_pages+"users/"+localStorage.getItem("id"))
                 .then((data) => {
                     console.log(data.data.data);
                     data.data.data.forEach(element => {
                         if (element.gender == localStorage.getItem("interested_in")){
+                            console.log(element)
                         let age = calculateAge(element);
                         details = element.location.split(",")
                         const v = details[0];
@@ -78,7 +79,7 @@ const addFavorite = () => {
             const user_id = localStorage.getItem("selected_user");
             const like_image = document.getElementById("image"+user_id);
             like_image.src = "./assets/liked.png";
-            await axios(website_pages+"addFavorite/"+1+" "+user_id)
+            await axios(website_pages+"addFavorite/"+localStorage.getItem("id")+" "+user_id)
                 .then((data) => {
                     console.log(data)})
 })})};

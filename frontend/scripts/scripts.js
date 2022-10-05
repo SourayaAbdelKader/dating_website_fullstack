@@ -86,7 +86,6 @@ signup_interested_in_b.addEventListener("click", ()=>{
     api_data.append("interested_in", "both");
 })
 
-
 const signUp = () => {
     signup_btn.addEventListener("click", async()=>{ 
         if (validInputs()){ 
@@ -136,8 +135,6 @@ const hideLoginModal = () => {
 
 login_btn.addEventListener("click", showLoginModal);
 cancel_btn.addEventListener("click", hideLoginModal);
-
-//
 
 function uploadImage() {
     if (this.files && this.files[0]) {
